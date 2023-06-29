@@ -62,7 +62,10 @@ class PaymentInfo(models.Model):
     payment_type = models.CharField(max_length= 250, help_text="Mpesa(Kenyan phone numbers only), Bank_Transaction, cash on delivery")
     payment_phone = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
     amount = models.FloatField() #amount being paid
-    payment_status = models.CharField(max_length= 250) 
+    payment_status = models.CharField(max_length= 250)
+    def __str__(self):
+        return self.payment_code
+ 
 
 
 class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
