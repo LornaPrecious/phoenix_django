@@ -4,7 +4,6 @@ class Product(models.Model):
     product_id = models.IntegerField(primary_key=True)
     product_name = models.CharField(max_length = 350) 
     product_price = models.FloatField() #sale price per product
-    description = models.TextField()
     product_tax = models.FloatField()
     product_discount = models.FloatField() #optional depending with products bought
     stock = models.IntegerField() #automate? goods not sold/ in storage
