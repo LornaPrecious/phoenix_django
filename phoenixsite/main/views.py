@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from .models import Product
 
 def index(request):
+    return render(request, "main/base.html", {})
+
+def home(request):
     return render(request, "main/index.html")
 
 def aboutus(request):
@@ -14,6 +17,6 @@ def contactus(request):
 def products(request):
    return render(request, "main/products.html")
 
-def productsid(response, id):
-    pn = Product.objects.get(product_id = id)
-    return HttpResponse("<h1> %s </h1>" %pn.product_name)
+# def productsid(response, id):
+#     pn = Product.objects.get(product_id = id)
+#     return HttpResponse("<h1> %s </h1>" %pn.product_name)
