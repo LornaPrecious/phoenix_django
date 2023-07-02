@@ -17,6 +17,9 @@ def contactus(request):
 def products(request):
    return render(request, "main/products.html")
 
+def store(request):
+   return render(request, "main/store.html")
+
 # def productsid(response, id):
 #     pn = Product.objects.get(product_id = id)
 #     return HttpResponse("<h1> %s </h1>" %pn.product_name)
