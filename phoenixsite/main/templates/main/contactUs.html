@@ -13,13 +13,16 @@
                                 <span class="section-heading-upper">Feel free to drop us a line below!</span>
                                 <span class="section-heading-lower">Contact Us</span>
                             </h2>
-                            <form class="form-unstyled form-hours mb-5 text-left mx-auto" action="#" method = "post">
+                            <form class="form-unstyled form-hours mb-5 text-left mx-auto" action="#" method = 'post'>
                                 <div class = "form-unstyled-item form-hours-item d-flex">
-                                          {{form}} 
+                                    <table>
+                                          {{form.as_table}}
+                                    </table>
+
                                 </div>
 
                                   <div class="intro-button mx-auto btn btn-primary btn-xl">                            
-                                    <button type="submit" > submit </button> </div>
+                                    <button type="submit" name = 'save' > submit </button> </div>
                                 
                             </form>    
                                 

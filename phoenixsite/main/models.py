@@ -15,6 +15,7 @@ class Product(models.Model):
 
 class Customer (models.Model):
     customer_id = models.IntegerField(primary_key= True)
+    password = models.CharField(max_length= 100)
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
     email = models.EmailField()
