@@ -15,11 +15,11 @@ class Product(models.Model):
 
 class Customer (models.Model):
     customer_id = models.IntegerField(primary_key= True)
-    first_name = models.CharField(max_length=250, help_text='Example Joe, Jane')
+    first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
-    email = models.EmailField(help_text='joedoe@gmail.com')
+    email = models.EmailField()
     phone_number = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
-    gender = models.CharField(max_length=20, help_text='male, female, other')
+    gender = models.CharField(max_length=20)
     address = models.CharField(max_length=250)
     def __str__(self):
         return self.customer_id
@@ -51,6 +51,7 @@ class Shipping(models.Model):
     shipping_status = models.CharField(max_length=250) 
     def __str__(self):
         return self.shipping_code
+    
 
 class PaymentInfo(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)#reference to cutomerID
@@ -65,6 +66,17 @@ class PaymentInfo(models.Model):
     def __str__(self):
         return self.payment_code
  
+class complaints(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)#orderID for product being paid
+    shipping = models.ForeignKey(Shipping, models.SET_NULL, blank=True, null = True)
+
+    complaint_code = models.CharField(max_length=20)
+    issue = models.CharField(max_length=300)
+    other = models.TextField()
+    def __str__(self):
+        return self.complaint_code
 
 
 class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
@@ -73,7 +85,7 @@ class Offer(models.Model): #can I apply these discounts to the other tables and 
     shipping = models.ForeignKey(Shipping,models.SET_NULL, blank=True, null = True)
 
     coupon_code = models.CharField(max_length = 20, primary_key=True)
-    offer_discount = models.FloatField()
+    offer_discount = models.FloatField() #percentage discount being offer
     description = models.CharField(max_length=1000)
     def __str__(self):
         return self.coupon_code

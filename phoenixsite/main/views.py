@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product
+from .forms import ContactUs
 
 def index(request):
     return render(request, "main/base.html", {})
@@ -12,7 +13,8 @@ def aboutus(request):
     return render(request, "main/about.html")
 
 def contactus(request):
-    return render(request, "main/contactUs.html")
+    form = ContactUs()
+    return render(request, "main/contactUs.html", {"form":form})
 
 def products(request):
    return render(request, "main/products.html")
