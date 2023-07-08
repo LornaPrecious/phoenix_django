@@ -11,6 +11,8 @@ class Product(models.Model):
     purchase_price = models.IntegerField()# amount used to purchase the products for sale
     def __str__(self):
         return self.product_name
+    class Meta:
+        db_table='product'
 
 
 class Customer (models.Model):
@@ -24,6 +26,8 @@ class Customer (models.Model):
     address = models.CharField(max_length=250)
     def __str__(self):
         return self.customer_id
+    class Meta:
+        db_table='customer'
     
 
 class Order (models.Model):
@@ -38,6 +42,8 @@ class Order (models.Model):
     order_discount = models.FloatField() #optional depending with order, ie. an order above 5k has 10% discount
     def __str__(self):
         return self.order_id
+    class Meta:
+        db_table='order'
 
     
 class Shipping(models.Model):
@@ -52,7 +58,8 @@ class Shipping(models.Model):
     shipping_status = models.CharField(max_length=250) 
     def __str__(self):
         return self.shipping_code
-    
+    class Meta:
+        db_table='shipping'
 
 class PaymentInfo(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)#reference to cutomerID
@@ -66,8 +73,10 @@ class PaymentInfo(models.Model):
     payment_status = models.CharField(max_length= 250)
     def __str__(self):
         return self.payment_code
+    class Meta:
+        db_table='payment_information'
  
-class complaints(models.Model):
+class Complaints(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)#orderID for product being paid
@@ -78,6 +87,8 @@ class complaints(models.Model):
     other = models.TextField()
     def __str__(self):
         return self.complaint_code
+    class Meta:
+        db_table='complaints'
 
 
 class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
@@ -90,6 +101,8 @@ class Offer(models.Model): #can I apply these discounts to the other tables and 
     description = models.CharField(max_length=1000)
     def __str__(self):
         return self.coupon_code
+    class Meta:
+        db_table='offer'
 
 
 

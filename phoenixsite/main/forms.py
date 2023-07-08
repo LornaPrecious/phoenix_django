@@ -32,9 +32,9 @@ class ContactUs(forms.Form):
         any HTML attributes that should be added to the Widget, based on this
         Field.
         """
-class CreateAccount(forms.ModelForm):
+""" class CreateAccount(forms.ModelForm):
     class Meta:
       model = Customer
-      fields = ('password', 'first_name', 'last_name', 'email', 'phone_number', 'address')
+      fields = ('password', 'first_name', 'last_name', 'email', 'phone_number', 'address') """
 
 
