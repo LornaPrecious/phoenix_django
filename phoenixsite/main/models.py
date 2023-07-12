@@ -20,6 +20,7 @@ class Customer (models.Model):
     password = models.CharField(max_length= 100)
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
+    username_field = models.CharField(max_length=150)
     email = models.EmailField()
     phone_number = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
     gender = models.CharField(max_length=20)

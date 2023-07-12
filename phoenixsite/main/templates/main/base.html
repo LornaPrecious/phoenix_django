@@ -35,11 +35,13 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "products" %}">Products</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "store" %}">Store</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "contactus" %}">Contact Us</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase split" href="{% url "register" %}">Sign up</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase split" href="{% url "login" %}">Login</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-
+            
         {% block pagecontent %} {% endblock %}
 
         <footer class="footer text-faded text-center py-5">
