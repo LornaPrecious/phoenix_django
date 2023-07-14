@@ -3032,32 +3032,32 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #000;
-  background-color: #e6a756;
-  border-color: #e6a756;
+  background-color: #D88D68;
+  border-color: #E7A984;
 }
 .btn-primary:hover {
   color: #000;
-  background-color: #eab46f;
-  border-color: #e9b067;
+  background-color: #EDC59C;
+  border-color: #EDC59C;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #000;
-  background-color: #eab46f;
-  border-color: #e9b067;
+  background-color: #f2c79d;
+  border-color: #EDC59C;
   box-shadow: 0 0 0 0.25rem rgba(196, 142, 73, 0.5);
 }
 .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
   color: #000;
-  background-color: #ebb978;
-  border-color: #e9b067;
+  background-color: #D88D68;
+  border-color: #E7A984;
 }
 .btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgba(196, 142, 73, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(146, 76, 76, 0.5);
 }
 .btn-primary:disabled, .btn-primary.disabled {
   color: #000;
-  background-color: #e6a756;
-  border-color: #e6a756;
+  background-color: #D88D68;
+  border-color: #E7A984;
 }
 
 .btn-secondary {
@@ -7718,8 +7718,8 @@ textarea.form-control-lg {
 /* rtl:end:remove */
 .text-primary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
-}
+  color: #4B2C1A;
+} /*rgba(var(--bs-primary-rgb),  var(--bs-text-opacity) !important;*/
 
 .text-secondary {
   --bs-text-opacity: 1;
@@ -11355,11 +11355,12 @@ p {
 }
 
 #mainNav {
-  background-color: rgba(47, 23, 15, 0.9);
+  background-color: #9E6C54;
+  /*rgba(47, 23, 15, 0.9); */
   font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 #mainNav .navbar-brand {
-  color: #e6a756;
+  color: #000000;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   color: rgba(255, 255, 255, 0.7);
@@ -11404,7 +11405,8 @@ p {
 .cta {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: rgba(230, 167, 86, 0.9);
+  background-color: #E7A984;
+  /*rgba(230, 167, 86, 0.9); */
 }
 .cta .cta-inner {
   position: relative;

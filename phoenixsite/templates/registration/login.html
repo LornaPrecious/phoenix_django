@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        {% block pagecontent %}
+        <section class="page-section cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-5">
+                                <span class="section-heading-upper">WELCOME</span>
+                                <span class="section-heading-lower">LOGIN</span>
+                            </h2>
+
+                            <form  method = 'POST' class = "form-group">
+                    
+                                        {% csrf_token %} 
+                                        {{form|crispy}}
+                                <p> Forgot your password? Don't fret <a href = "{% url "password_reset" %}"> Reset it </a> </p>
+                                <button type="submit" name = 'save' class ='btn, btn_success'> login </button> 
+                                <p> Don't have an account?<a href = '/register'> Sign up </a> </p>
+                            </form>    
+
+
+                            <p class="address mb-5">
+                                <em>
+                                    <strong>1116 Orchard Street</strong>
+                                    <br />
+                                    Golden Valley, Minnesota
+                                </em>
+                            </p>
+                            <p class="mb-0">
+                                <small><em>Call Anytime</em></small>
+                                <br />
+                                (317) 585-8468
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        {% endblock %} 
+    </body>
+</html>
