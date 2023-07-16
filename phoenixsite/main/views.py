@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 #from .models import Product
 from .forms import ContactUs
-from . models import Customer, Complaints
+from . models import Customer
+from productManagement.models import Complaints
 
 def index(request):
     return render(request, "main/base.html", {})
@@ -29,12 +30,6 @@ def contactus(request):
     else:
         form = ContactUs()
     return render(request, "main/contactUs.html", {"form":form})
-
-def products(request):
-   return render(request, "main/products.html")
-
-def store(request):
-   return render(request, "main/store.html")
 
 # def productsid(response, id):
 #     pn = Product.objects.get(product_id = id)
