@@ -28,6 +28,9 @@ urlpatterns = [
     path('contactus/', include("main.urls")),
     path('products/', pv.products, name = 'products'),
     path('store/',pv.store, name = 'store'),
+    path('cart/', pv.cart, name = 'cart'),
+    path('checkout/', pv.checkout, name = 'checkout'),
+    
     path('register/', v.register, name ='register'),
     path('accounts/', include("django.contrib.auth.urls")),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),                                           

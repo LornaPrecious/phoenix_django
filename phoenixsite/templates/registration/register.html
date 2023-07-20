@@ -20,8 +20,9 @@
                                         {% csrf_token %}
                                         {{form|crispy}}
 
-                                                   
-                                    <button type="submit" name = 'save' > Sign up </button>
+                                        <div class = "intro-button mx-auto">
+                                            <button type="submit" name = 'save' class ='btn mt-2 btn-primary btn-xl mb-2' >Sign up!</button>           
+                                        </div>
                                     <p> You already have an account?<a href = '/login'> Login </a> </p>
                                 
                             </form>    
