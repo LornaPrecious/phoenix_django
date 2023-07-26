@@ -4515,9 +4515,9 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #f6e1c5;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px #f6e1c5;
   border-radius: 0.25rem;
 }
 .card > hr {
@@ -6076,7 +6076,7 @@ textarea.form-control-lg {
   justify-content: center;
   width: 15%;
   padding: 0;
-  color: #fff;
+  color: #000000;
   text-align: center;
   background: none;
   border: 0;
@@ -11345,6 +11345,7 @@ p {
   background-color: #f6e1c5;
 }
 
+
 .btn-xl {
   font-weight: 700;
   font-size: 0.8rem;
@@ -11384,6 +11385,10 @@ p {
   #mainNav .navbar-nav .nav-item.active .nav-link:hover {
     color: #e6a756;
   }
+}
+
+.dropdownNav{
+  overflow: hidden;
 }
 
 .btn {

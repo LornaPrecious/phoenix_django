@@ -8,8 +8,12 @@ def store(request):
 
 def cart(request):
    context ={}
-   return render(request, "products/cart.html", context)
+   return render(request, "productManagement/cart.html", context)
 
 def checkout(request):
    context = {}
-   return render(request, "products/checkout.html", context)
+   return render(request, "productManagement/checkout.html", context)
+
+def dresses(request):
+   context = {}
+   return render(request, "productManagement/dresses.html", context)
