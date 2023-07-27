@@ -111,57 +111,82 @@
             </div>        
         </section>
         
-<section class="page-section clearfix">
-<div class="container">
-    <div class="product-item">
-        <div class="img-slider">
-            <div class="slider-container intro-img"> 
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/allPendants.webp' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/anklet.jpg' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/chain.webp' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/boxPendants.webp' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/cosmeticBag3.jpg' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/cosmeticBAG.jpg' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/crystalPendant.webp' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/flowerEarring.jpg' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/koreanEaring.webp' %}" alt="..." />
-                </div>
-                <div class = "slide">
-                    <img class="img-fluid rounded about-heading-img mb-3 mb-lg-0" src="{% static 'img/waist.jpg' %}" alt="..." />
-                </div>
-            </div>
-            </div>
-            <div class="intro-text left-0 text-center bg-faded p-4 rounded">
-                <h2 class="section-heading mb-4">
-                    <span class="section-heading-upper">Impeccable Beauty</span>
-                    <span class="section-heading-lower">Nurture your natural essence</span>
-                </h2>
-                <p class="mb-3">Phoenix organics products guarantees transformation of damaged hair to radiance. We are determined to preserve and enhance your natural beauty and health. We believe that what you put on your hair is just as important as what you put in your body and are committed to using only the finest, natural ingredients in our products.</p>
-                <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{% url "products" %}">See more!</a></div>
-            </div>
+        <section class="page-section about-heading">
+            <div class="container">
+                                
+                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="hover">
 
+                        <ol class="carousel-indicators">
+                            <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                            <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+                            <li data-bs-target="#myCarousel" data-bs-slide-to="4"></li>
+                    
+                        </ol>
+
+
+
+                        <div class="carousel-inner">
+                            <div class="product-item1 carousel-item active">
+                                <img class=" product-item-img1 mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 d-block" src="{% static 'img/allPendants.webp' %}" alt="..." />
+                            </div>
+
+                            <div class="product-item1 carousel-item">
+                                <img class="product-item-img1 mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 d-block" src="{% static 'img/anklet.jpg' %}" alt="..." />
+                            </div>
+
+                            <div class="product-item1 carousel-item">
+                                <img class="product-item-img1 mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 d-block" src="{% static 'img/bg.jpg' %}" alt="..." />
+                            </div>
+
+                            <div class="product-item1 carousel-item">
+                                <img class="product-item-img1 mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 d-block" src="{% static 'img/cosmetic bag.jpg' %}" alt="..." />
+                            </div>
+
+                            <div class="product-item1 carousel-item">
+                                <img class="product-item-img1 mx-auto d-flex rounded img-fluid mb-3 mb-lg-0 d-block" src="{% static 'img/cosmeticBag3.jpg' %}" alt="..." />
+                            </div>
+
+                            
+
+                        </div>
+
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+
+                    </div>
+                
+                    <div class="about-heading-content">
+                      <div class="row">
+                          <div class="col-xl-9 col-lg-10 mx-auto">
+                              <div class="bg-faded rounded p-5">
+                                  <h2 class="section-heading mb-4">
+                                      <span class="section-heading-upper">Your hair is your crowning glory,</span>
+                                      <span class="section-heading-lower">Transform it!</span>
+                                  </h2>
+                                  <p>The current market is packed with harsh chemical-laden hair products that not only damages hair, but also stunts its growth. Existing natural hair care lines are also unaffordable and unaccessible. We at Phoenix Organics are developing products that are affordable, available and kind to both your hair and the environment. PRODUCTS TAILORED TO NURTURE YOUR NATURAL ESSENSE. Our line is made with essential oils, plant extracts, and other high-quality, nourishing ingredients that work to grow and protect your hair. </p>
+                                  <p class="mb-0">
+                                      We guarantee that you will fall in
+                                      <em>lust</em>
+                                      with our high quality products the moment you use them!</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                
             </div>
-            </div>
-        
-            
+                           
+                        
         </section>
+
 
        {% endblock %}
 
