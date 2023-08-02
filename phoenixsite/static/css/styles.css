@@ -3488,6 +3488,12 @@ textarea.form-control-lg {
   border-radius: 0.3rem;
 }
 
+.btn-lg1, .btn-group-lg1 > .btn {
+  width: 70%;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+}
+
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -11460,11 +11466,44 @@ p {
     bottom: -2rem;
   }
 }
+
 @media (min-width: 1200px) {
   .intro .intro-text {
     width: 45%;
   }
 }
+
+.intro1 {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .intro1 .intro-img1 {
+    max-width: 50vw;
+    float: left;
+  }
+  .intro1 .intro-text1 {
+    left: 0;
+    width: 60%;
+    margin-top: 3rem;
+    position: absolute;
+  }
+  .intro1 .intro-text1 .intro-button1 {
+    width: 100%;
+    left: 0;
+    position: absolute;
+    bottom: -2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .intro1 .intro-text1 {
+    width: 45%;
+  }
+}
+
+
+
 
 @media (min-width: 992px) {
   .product-item .product-item-title {
@@ -11498,6 +11537,25 @@ p {
     max-height: 90vh;
   }
   .product-item1 .product-item-description1 {
+    position: relative;
+    z-index: 1;
+    margin-top: -3rem;
+    max-width: 55vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-item2 .product-item-title2 {
+    position: relative;
+    z-index: 1;
+    margin-bottom: -3rem;
+  }
+  .product-item2 .product-item-img2 {
+    position: relative;
+    z-index: 0;
+    max-width: 15wh;
+    } 
+  .product-item2 .product-item-description2 {
     position: relative;
     z-index: 1;
     margin-top: -3rem;
@@ -11727,3 +11785,5 @@ height: 550px;
     opacity: 0;
   }
 }
+
+/* box-shadow: 0 3px 6px 2px darken(whitesmoke, 10%); */

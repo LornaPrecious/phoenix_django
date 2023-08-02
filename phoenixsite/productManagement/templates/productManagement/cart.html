@@ -6,62 +6,113 @@
         {% block pagecontent %}
 
         <section class="page-section cta">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-9 mx-auto">
-                        <div class="cta-inner bg-faded text-center rounded">
-                            <h2 class="section-heading mb-5">
-                                <span class="section-heading-upper">Come On In</span>
-                                <span class="section-heading-lower">We're Open</span>
-                            </h2>
-                            <ul class="list-unstyled list-hours mb-5 text-left mx-auto">
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Sunday
-                                    <span class="ms-auto">Closed</span>
-                                </li>
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Monday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
-                                </li>
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Tuesday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
-                                </li>
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Wednesday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
-                                </li>
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Thursday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
-                                </li>
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Friday
-                                    <span class="ms-auto">7:00 AM to 8:00 PM</span>
-                                </li>
-                                <li class="list-unstyled-item list-hours-item d-flex">
-                                    Saturday
-                                    <span class="ms-auto">9:00 AM to 5:00 PM</span>
-                                </li>
-                            </ul>
-                            <p class="address mb-5">
-                                <em>
-                                    <strong>1116 Orchard Street</strong>
-                                    <br />
-                                    Golden Valley, Minnesota
-                                </em>
-                            </p>
-                            <p class="mb-0">
-                                <small><em>Call Anytime</em></small>
-                                <br />
-                                (317) 585-8468
-                            </p>
-                        </div>
+            <div class="container"> 
+                <div class = "cta-inner">
+                    
+                    <div class="col-lg-8 col-xl-8 mx-auto">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Continue shopping</span>
                     </div>
-                </div>
+
+                    
+                    <div class="row col-lg-8 col-xl-8 bg-faded mx-auto">
+                        <h2 class="section-heading mt-5 text-center">
+                            <span class="section-heading-upper">Your Bag! {3} items</span>
+                        </h2>
+                    
+                        <div class="col-xl-6 col-lg-6 mt-4 px-4">
+                            <div class="rounded product-item2">
+                               <img class="product-item-img2 img-fluid rounded d-flex" src="{% static 'img/image1.jpg' %}" alt="..." />
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 mt-4 pe-3">
+                            <div class="rounded">
+                                <h2 class="section-heading mb-4">
+                                    <span class="section-heading-upper">Product code {productid} </span>
+                                    <span class="section-heading-upper">{Product name}</span>
+                                </h2>
+                                <p>{Product description}Phoenix organics products guarantees transformation of damaged hair to radiance. </p>
+                                <h2 class="section-heading mb-4">
+                                    <span class="section-heading-upper">{Product price}</span>
+                                </h2>
+
+                                    <label for="quantity" class="form-label">Quantity:</label>
+                                    
+                                        <select name="quantity" class="form-select-sm">
+                                            <option value disabled>Please select</option>
+                                            <option value="1" selected>1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="3">4</option>
+                                            <option value="3">5</option>
+                                        </select>
+                                    
+                                    <a class = "px-4 btn btn-primary ms-5" href="#" role="button">Remove</a>
+                                </div>
+                        
+                  
+                            </div>
+                                   
+
+                            <div class="col-xl-12 col-lg-12 mt-0 ">
+                                <div class="rounded">
+                                    <ul class="list-unstyled my-4 text-start mx-auto">
+                                        <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                            SUBTOTAL
+                                            <span class="ms-auto">{#}</span>
+                                        </li>
+                                        <li class="list-unstyled-item d-flex mb-3">
+                                            Delivery (Standard - 2 working days): <br> Change delivery method-this is a link to profile page
+                                            <span class="ms-auto">{free}</span>
+                                        </li>
+                                        <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                            Total: 
+                                            <span class="ms-auto">{Calculate total}</span> 
+                                        </li>
+
+                                        <li class="list-unstyled-item d-flex mb-3">
+                                            <input type="checkbox" name="discountCode" checked>
+                                            <label for="discountCode" class="form-label">I have a DISCOUNT code</label>                                            
+                                        </li>
+
+                                        <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                           <input type="text" name="promo-checkbox" placeholder="Enter your promo code here" checked class="form-control"> 
+                                            <span class = "ms-auto"><input class="btn btn-primary px-4 ms-5" type="submit" value="Apply"></span> 
+                                        </li>
+
+                                    </ul>
+                                    
+                                    <a class="btn btn-outline-primary btn-lg1 mb-4" aria-pressed="true" href="#">
+                                        <i class="fas fa-lock"></i>
+                                        <span>Go to Checkout</span>
+                                    </a>                               
+                                                                        
+                                </div>
+                            </div>                    
+
+                            <div class = "text-center mb-4">
+                                <p class="address mb-5">
+                                    <em>
+                                        <strong>1116 Orchard Street</strong>
+                                        <br />
+                                        Golden Valley, Minnesota
+                                    </em>
+                                </p>
+                                <p class="mb-0">
+                                    <small><em>Call Anytime</em></small>
+                                    <br />
+                                    (317) 585-8468
+                                </p> 
+                                </div>
+                    </div>
+
+                </div>  
+                
             </div>
         </section>
-    
+
+                          
         {% endblock %}
     </body>
 </html>
