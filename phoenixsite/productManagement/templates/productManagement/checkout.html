@@ -4,8 +4,51 @@
 <html lang="en">
     <body>
         {% block pagecontent %}
+        <section class="page-section cta">
+            <div class="container"> 
+                <div class = "cta-inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-xl-6 bg-faded">
 
+                            <form>
+                                <input required class="form-control" type="text" name="name" placeholder="Name...">
+                                <input required class="form-control" type="email" name="email" placeholder="Email address...">
+                                <input required class="form-control" type="number" name="phone-number" placeholder="Phone number...">
+                                <p> SHIPPING INFORMATION</p>
+                                <input class="form-control" type="text" name="address" placeholder="Address...">
+                                <input class="form-control" type="text" name="city" placeholder="City...">
+                                <input class="form-control" type="zipcode" name="zipcode" placeholder="Zip code...">
+                            
+                                <hr>
 
+                            <input class="btn btn-outline-primary" type="submit" value="Continue">
+                            </form>
+                        </div>
+
+                        <div class="col-lg-6 col-xl-6 bg-faded">
+                            <a href="{% url "cart" %}" class="btn btn-outline-primary">Go back to cart</a>
+                            <hr>
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-lower">Order <Summary></Summary></span>
+                            </h2>
+                            <hr>
+
+                            <div class="cart-row">
+                                <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
+                                <div style="flex:2"><p>Product 1</p></div>
+                                <div style="flex:1"><p>$20.00</p></div>
+                                <div style="flex:1"><p>x2</p></div>
+                            </div>
+                            <h5>Items:   2</h5>
+                            <h5>Total:   $4</h5>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         {% endblock %}
     </body>
 </html>
