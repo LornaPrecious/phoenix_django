@@ -19,4 +19,4 @@ for model in models:
     except admin.sites.AlreadyRegistered:
         pass
 
-# Register your models here.
+

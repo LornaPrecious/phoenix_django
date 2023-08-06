@@ -5,8 +5,8 @@ class Product(models.Model):
     product_id = models.IntegerField(primary_key=True)
     product_name = models.CharField(max_length = 350) 
     product_price = models.FloatField() #sale price per product
+    digital = models.BooleanField(default=False, null=True, blank=True) #ship product if its not digital, hence the default false
     product_tax = models.FloatField()
-    product_discount = models.FloatField() #optional depending with products bought
     stock = models.IntegerField() #automate? goods not sold/ in storage
     products_bought = models.IntegerField() #no of products bought,
     purchase_price = models.IntegerField()# amount used to purchase the products for sale
@@ -15,44 +15,54 @@ class Product(models.Model):
     class Meta:
         db_table='product'
 
-class Order (models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+class Order (models.Model): ##This basically represents the CART
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
 
     order_id = models.IntegerField(primary_key=True)
-    quantity = models.IntegerField() #number of products bought per order
     order_date = models.DateField(auto_now=True) 
+    complete = models.BooleanField(default=False) #if complete is false can continue adding items, changes status of cart is it same as order status??
     order_status = models.CharField(max_length=250)
     cost = models.IntegerField() # total quantity * product_price - discount 
-    order_discount = models.FloatField() #optional depending with order, ie. an order above 5k has 10% discount
     def __str__(self):
-        return self.order_id
+        return str(self.order_id)
     class Meta:
         db_table='order'
 
+class OrderItem (models.Model): #This items represents items within the cart
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+
+
+    quantity = models.IntegerField(default=0, null=True, blank=True) #number of products bought per order
+    date_added = models.DateField(auto_now=True) #date we added an item to order
+    def __str__(self):
+        return str(self.product.product_name)
+    class Meta:
+        db_table='orderItem'
+
     
-class Shipping(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+class ShippingAddress(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
 
     shipping_code = models.CharField(max_length=20, primary_key=True)
-    product_weight = models.FloatField()
-    location = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
+    zipcode = models.CharField(max_length=200)
     delivery_cost = models.FloatField() #depending with location, product_weight, any discounts
-    shipping_discount = models.FloatField() #optional depending with shipping
-    shipping_status = models.CharField(max_length=250) 
+    shipping_date = models.DateTimeField(auto_now_add=True) 
     def __str__(self):
         return self.shipping_code
     class Meta:
-        db_table='shipping'
+        db_table='shippingAddress'
 
 class PaymentInfo(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)#reference to cutomerID
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)#orderID for product being paid
-    shipping = models.ForeignKey(Shipping, models.SET_NULL, blank=True, null = True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)#reference to cutomerID
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)#orderID for product being paid
+    shippingAddress = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
 
     payment_code = models.CharField(max_length= 20, primary_key=True)
-    payment_type = models.CharField(max_length= 250, help_text="Mpesa(Kenyan phone numbers only), Bank_Transaction, cash on delivery")
+    payment_type = models.CharField(max_length= 250, help_text="Mpesa(Kenyan phone numbers only)")
     payment_phone = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
     amount = models.FloatField() #amount being paid
     payment_status = models.CharField(max_length= 250)
@@ -64,7 +74,7 @@ class PaymentInfo(models.Model):
 class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
     product = models.ForeignKey(Product, models.SET_NULL, blank=True, null = True)
     order = models.ForeignKey(Order, models.SET_NULL, blank=True, null = True)
-    shipping = models.ForeignKey(Shipping,models.SET_NULL, blank=True, null = True)
+    shipping = models.ForeignKey(ShippingAddress,models.SET_NULL, blank=True, null = True)
 
     coupon_code = models.CharField(max_length = 20, primary_key=True)
     offer_discount = models.FloatField() #percentage discount being offer
@@ -75,10 +85,10 @@ class Offer(models.Model): #can I apply these discounts to the other tables and 
         db_table='offer'
 
 class Complaints(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)#orderID for product being paid
-    shipping = models.ForeignKey(Shipping, models.SET_NULL, blank=True, null = True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null = True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null = True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null = True)#orderID for product being paid
+    shipping = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
 
     complaint_code = models.CharField(max_length=20)
     issue = models.CharField(max_length=300)
