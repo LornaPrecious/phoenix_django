@@ -1,0 +1,80 @@
+{% extends 'main/base.html' %}
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        {% block pagecontent %}
+
+        <section class="page-section cta">
+            <div class="container"> 
+                <div class = "cta-inner">
+                    
+                    <div class="row col-lg-11 col-xl-11 bg-faded mx-auto">
+                       
+                        <div class="col-xl-6 col-lg-6 my-5">
+                            <div class="rounded product-item2">
+                                <div class="text-end product-item-title2 me-4">
+                                <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #000000;"></i>
+                                </div>
+                               <img class="product-item-img2 img-fluid d-flex" src="{% static 'img/image1.jpg' %}" alt="..." />
+                            <table>
+                            <tr>
+                           <td><img class="product-item-img2 img-fluid d-flex" src="{% static 'img/image1.jpg' %}" alt="..." /> </td>
+                           <td><img class="product-item-img2 img-fluid d-flex" src="{% static 'img/image1.jpg' %}" alt="..." /> </td>
+                           <td><img class="product-item-img2 img-fluid d-flex" src="{% static 'img/image1.jpg' %}" alt="..." /> </td>
+                            </tr>
+
+                           </table>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 mt-5">
+                            <div class="rounded">
+                                <h2 class="section-heading">
+                                   <span class="section-heading-upper">{Product name}</span>
+                                </h2>
+                                <p> REVIEWS</p> 
+                                                               
+                                <table>
+                                    <tr>
+                                        <td> <p class = "fw-bold"> {Product price}</p> </td>  
+                                        <td>
+                                            <ul class="list-unstyled">
+                                            <li class="list-unstyled-item d-flex fw-bold ps-5 ms-3 mt-2">
+                                            <div class="mt-2">  Quantity: {1} </div>
+                                                <span> <div class="border-0 ms-4">
+                                                    <i class="fa-solid fa-caret-up fa-lg" style="color: #000000;"></i>
+                                                        <div class = "pt-0"> <i class="fa-solid fa-caret-down fa-lg" style="color: #000000;"></i> </div>
+                                                        </div>   
+                                                </span> 
+                                                
+                                            </li>  
+                                            </ul>  
+                                        </td> 
+                                    </tr>
+                                   
+                                </table>  
+                                <hr>
+                                
+                                <p>{Product description}Phoenix organics products guarantees transformation of damaged hair to radiance. </p>
+                                <div class="text-center mt-5">
+                                    <a href="{% url "cart" %}" class="btn btn-primary btn-lg ">Add to cart</a>
+                                </div>
+                            
+                            </div>                       
+                  
+                        </div>
+                                   
+                              
+
+                            
+                    </div>
+
+                </div>  
+                
+             </section>
+
+                          
+        {% endblock %}
+    </body>
+</html>

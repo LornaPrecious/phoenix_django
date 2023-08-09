@@ -94,8 +94,7 @@ hr {
   background-color: #9E6C54;
   border: 0;
   opacity: 0.5;
-  margin-top: 3rem !important;
-}
+ }
 
 hr:not([size]) {
   height: 1px;

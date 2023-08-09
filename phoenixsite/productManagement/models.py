@@ -4,6 +4,7 @@ from main.models import Customer
 class Product(models.Model): 
     product_id = models.IntegerField(primary_key=True)
     product_name = models.CharField(max_length = 350) 
+    product_image = models.ImageField(null=True, blank=True)
     product_price = models.FloatField() #sale price per product
     digital = models.BooleanField(default=False, null=True, blank=True) #ship product if its not digital, hence the default false
     product_tax = models.FloatField()
@@ -14,6 +15,14 @@ class Product(models.Model):
         return self.product_name
     class Meta:
         db_table='product'
+
+    # @property #help us access this as an attribute rather than a model
+    # def product_imagesURL(self):
+    #     try: 
+    #         url = self.product_image.url
+    #     except:
+    #         url = ''
+    #         return url
 
 class Order (models.Model): ##This basically represents the CART
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders

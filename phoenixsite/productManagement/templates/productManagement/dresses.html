@@ -10,109 +10,24 @@
             <div class="container"> 
                 <div class="about-heading-content">
                     <div class="row">
+                      {% for product in products %}
 
                         <div class="col-xl-3 col-lg-3 mt-5">
-                            <div class="card w-auto">
-                                <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                <div class="card-body text-center">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                  <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
+                            <div class="card w-auto h-100">
+                                <img class="card-img-top vh-75" src="{{product.product_image.url}}" alt="Picture of a dress">
+                                <div class="card-body">
+                                  <h5 class="card-title text-center">{{product.product_name}}</h5>
+                                  <a href="{% url "cart" %}" class="btn btn-primary">Add to cart</a>
+                                  <a href="{% url "product_view" %}" class="btn btn-primary">view</a>
+                                  <p class="d-inline-block ps-4">${{product.product_price|floatformat:2}}</p>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 mt-5">
-                                <div class="card w-auto">
-                                    <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                    <div class="card-body text-center">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                      <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="col-xl-3 col-lg-3 mt-5">
-                                    <div class="card w-auto">
-                                        <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                        <div class="card-body text-center">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                          <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                          <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div class="col-xl-3 col-lg-3 mt-5">
-                                        <div class="card w-auto">
-                                            <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                            <div class="card-body text-center">
-                                              <h5 class="card-title">Card title</h5>
-                                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                              <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                              <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
-                                            </div>
-                                          </div>
-                                        </div>
-
-                        <!-- STARTING 2 ROW USING CARD-->
-                        <div class="col-xl-3 col-lg-3 mt-5">
-                        <div class="card w-auto">
-                            <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                            <div class="card-body text-center">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                              <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
-                            </div>
-                          </div>
-                        </div>
-
-
-                        <div class="col-xl-3 col-lg-3 mt-5">
-                            <div class="card w-auto">
-                                <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                <div class="card-body text-center">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                  <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                  <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
-                                </div>
-                              </div>
-                            </div>
-
-
-                            <div class="col-xl-3 col-lg-3 mt-5">
-                                <div class="card w-auto">
-                                    <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                    <div class="card-body text-center">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                      <a href="{% url "checkout" %}" class="btn btn-outline-primary">view</a>
-                                    </div>
-                                  </div>
-                                </div>
-
-
-                                <div class="col-xl-3 col-lg-3 mt-5">
-                                    <div class="card w-auto">
-                                        <img class="card-img-top vh-75" src="{% static 'img/image1.jpg' %}" alt="Card image cap">
-                                        <div class="card-body text-center">
-                                          <h5 class="card-title">Card title</h5>
-                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                          <a href="{% url "cart" %}" class="btn btn-outline-primary">Add to cart</a>
-                                          <a href='/checkout' class="btn btn-outline-primary">view</a>
-                                        </div>
-                                      </div> 
-                                    </div>
-
-
-
+                            
+  
+  
+                       {%endfor %}             
                      </div>
             </div>
         </section>

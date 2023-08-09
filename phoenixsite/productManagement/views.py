@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 def products(request):
    return render(request, "productManagement/products.html")
@@ -15,5 +16,10 @@ def checkout(request):
    return render(request, "productManagement/checkout.html", context)
 
 def dresses(request):
-   context = {}
+   products = Product.objects.all()
+   context = {'products': products}
    return render(request, "productManagement/dresses.html", context)
+
+def product_view(request):
+   context = {}
+   return render(request, "productManagement/product_view.html", context)
