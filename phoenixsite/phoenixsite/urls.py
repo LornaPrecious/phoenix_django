@@ -34,6 +34,7 @@ urlpatterns = [
     path('checkout/', pv.checkout, name = 'checkout'),
     path('dresses/', pv.dresses, name = 'dresses'),
     path('product_view/', pv.product_view, name='product_view'),
+    path('update_item/', pv.updateItem, name='update_item'),
     
     path('register/', v.register, name ='register'),
     path('accounts/', include("django.contrib.auth.urls")),

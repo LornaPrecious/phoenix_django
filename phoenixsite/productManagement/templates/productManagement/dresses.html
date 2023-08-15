@@ -17,9 +17,9 @@
                                 <img class="card-img-top vh-75" src="{{product.product_imagesURL}}" alt="Picture of a dress">
                                 <div class="card-body">
                                   <h5 class="card-title text-center">{{product.product_name}}</h5>
-                                  <a href="{% url "cart" %}" class="btn btn-primary">Add to cart</a>
+                                  <button data-product={{product.product_id}} data-action ="add" class ="btn btn-primary update-cart">cart</button>  
                                   <a href="{% url "product_view" %}" class="btn btn-primary">view</a>
-                                  <p class="d-inline-block ps-4">${{product.product_price|floatformat:2}}</p>
+                                  <p class="d-inline-block">${{product.product_price|floatformat:2}}</p>
                                 </div>
                               </div>
                             </div>

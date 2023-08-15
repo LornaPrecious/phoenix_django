@@ -11,7 +11,7 @@
                     
                     <div class="col-lg-8 col-xl-8 mx-auto mb-2">
                         <i class="fas fa-arrow-left"></i>
-                        <span><a href = '/products'> Continue shopping </a></span>
+                        <span><a href = '/products' class="text-uppercase text-decoration-none fw-bold pe-4 text-black"> Continue shopping </a></span>
                     </div>
 
                     
@@ -44,8 +44,8 @@
                                             <li class="list-unstyled-item d-flex fw-bold pe-5">
                                             <div class="mt-2">  Quantity: {{item.quantity}} </div>
                                                 <span> <div class="border-0 ms-4">
-                                                    <i class="fa-solid fa-caret-up fa-lg" style="color: #000000;"></i>
-                                                        <div class = "pt-0"> <i class="fa-solid fa-caret-down fa-lg" style="color: #000000;"></i> </div>
+                                                    <div data-product="{{item.product.product_id}}" data-action="add" class = "update-cart" style="cursor: pointer;"><i class="fas fa-caret-up fa-lg" style="color: #000000;"></i> </div>
+                                                        <div data-product="{{item.product.product_id}}" data-action="remove" class = "pt-0 update-cart" style="cursor: pointer;"> <i class="fas fa-caret-down fa-lg" style="color: #000000;"></i> </div>
                                                         </div>   
                                                 </span> 
                                             </li>  
@@ -54,9 +54,9 @@
                                         <td> <p class = "fw-bold"> Total: {{item.get_total|floatformat:2}}</p></td> 
                                     </tr>
                                 </table> 
-                                <div class = "text-center mb-2">    
-                                <a href="#" class="btn btn-primary">Remove Product</a>
-                                    </div>
+                                <div class = "text-center mb-2"> 
+                                    <button data-product={{item.product.product_id}} data-action ="remove_product" class ="btn btn-primary update-cart">Remove product</button>                                                                    
+                                </div>
                             </div>                       
                   
                         </div>
