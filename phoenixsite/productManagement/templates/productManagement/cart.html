@@ -11,39 +11,38 @@
                     
                     <div class="col-lg-8 col-xl-8 mx-auto mb-2">
                         <i class="fas fa-arrow-left"></i>
-                        <span>Continue shopping</span>
+                        <span><a href = '/products'> Continue shopping </a></span>
                     </div>
 
                     
                     <div class="row col-lg-8 col-xl-8 bg-faded mx-auto">
                         <h2 class="section-heading mt-4 text-center">
-                            <span class="section-heading-upper">Your Bag! {3} items</span>
+                            <span class="section-heading-upper">Your Bag! {{order.get_cart_items}} items</span>
                         </h2>
                     
-                        <div class="col-xl-6 col-lg-6 mt-5">
+                        {% for item in items %}
+                        <div class="col-xl-6 col-lg-6 mt-4">
                             <div class="rounded product-item2">
-                               <img class="product-item-img2 img-fluid d-flex" src="{% static 'img/image1.jpg' %}" alt="..." />
+                               <img class="product-item-img2 img-fluid d-flex" src="{{item.product.product_imagesURL}}" alt="..." />
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-6 mt-4">
+                        <div class="col-xl-6 col-lg-6 mt-5">
                             <div class="rounded">
-                                <p class="fw-bold">Product code {productid} </p>
                                 <h2 class="section-heading mb-4">
-                                   <span class="section-heading-upper">{Product name}</span>
+                                   <span class="section-heading-upper">{{item.product.product_name}}</span>
                                 </h2>
                                 <p>{Product description}Phoenix organics products guarantees transformation of damaged hair to radiance. </p>
-                                
                                 <table>
                                     <tr>
                                         <td><p class = "fw-bold pe-5"> {Size/ color, type etc}</p> </td>
-                                        <td> <p class = "fw-bold"> {Product price}</p> </td>   
+                                        <td> <p class = "fw-bold"> Price: {{item.product.product_price|floatformat:2}}</p> </td>   
                                     </tr>
                                     <tr>                                                                            
                                        <td>
                                             <ul class="list-unstyled">
                                             <li class="list-unstyled-item d-flex fw-bold pe-5">
-                                            <div class="mt-2">  Quantity: {1} </div>
+                                            <div class="mt-2">  Quantity: {{item.quantity}} </div>
                                                 <span> <div class="border-0 ms-4">
                                                     <i class="fa-solid fa-caret-up fa-lg" style="color: #000000;"></i>
                                                         <div class = "pt-0"> <i class="fa-solid fa-caret-down fa-lg" style="color: #000000;"></i> </div>
@@ -52,32 +51,28 @@
                                             </li>  
                                             </ul>  
                                         </td>
-                                        <td> <div class="mb-3"> <input class="btn btn-primary" type="submit" value="Remove"> </td> </div>
+                                        <td> <p class = "fw-bold"> Total: {{item.get_total|floatformat:2}}</p></td> 
                                     </tr>
-                                </table>     
-
-                            
+                                </table> 
+                                <div class = "text-center mb-2">    
+                                <a href="#" class="btn btn-primary">Remove Product</a>
+                                    </div>
                             </div>                       
                   
                         </div>
-                                   
+                        <hr>
+                         
+                        {% endfor%}
                        
                         <div class="row col-xl-12 col-lg-12">
                                 <div class="rounded">
                                     <ul class="list-unstyled my-4 text-start mx-auto">
                                         <li class="list-unstyled-item d-flex mb-3 fw-bold">
                                             SUBTOTAL
-                                            <span class="ms-auto">{#}</span>
-                                        </li>
-                                        <li class="list-unstyled-item d-flex mb-3">
-                                            Delivery (Standard - 2 working days): <br> Change delivery method-this is a link to profile page
-                                            <span class="ms-auto">{free}</span>
-                                        </li>
-                                        <li class="list-unstyled-item d-flex mb-3 fw-bold">
-                                            Total: 
-                                            <span class="ms-auto">{Calculate total}</span> 
+                                            <span class="ms-auto">{{order.get_cart_total|floatformat:2}}</span>
                                         </li>
 
+                                       
                                         <li class="list-unstyled-item d-flex mb-3">
                                             <input type="checkbox" name="discountCode" checked>
                                             <label for="discountCode" class="form-label">I have a DISCOUNT code</label>                                            
@@ -115,6 +110,8 @@
                                     (317) 585-8468
                                 </p> 
                                 </div>
+
+                                
                     </div>
 
                 </div>  

@@ -64,7 +64,22 @@
                                 <button type="submit" class="btn btn-primary">Continue</button>
                                 </div>
                             </form>
+                        
                         </div>
+                        <h2 class="section-heading my-3 text-center">
+                            <span class="section-heading-upper">Mpesa Information</span>
+                        </h2>
+                        
+                        <div class = "d-flex">
+                        <div class="list-inline ms-0">
+                           
+                            <img class="img-fluid rounded list-inline-item w-25 pb-2 pe-4" src="{% static 'img/image1.jpg' %}">
+                           
+                            <p class="list-inline-item pe-2">Product sfasgsegdgs1wqewq</p>
+                            <p class="list-inline-item pe-2">$20.00</p>
+                            <p class="list-inline-item">x2</p>
+                        </div>
+                    </div>
                     </div>
 
 
@@ -75,37 +90,47 @@
                             <h2 class="section-heading my-3 text-center">
                                 <span class="section-heading-upper">Order Summary</span>
                             </h2>
-                            
+                            {% for item in items %}
                             <div class = "d-sm-inline-block d-flex">
                             <div class="list-inline ms-0">
                                
-                                <img class="img-fluid rounded list-inline-item w-25 pb-2 pe-4" src="{% static 'img/image1.jpg' %}">
+                                <img class="img-fluid rounded list-inline-item w-25 pb-2 pe-4" src="{{item.product.product_imagesURL}}">
                                
-                                <p class="list-inline-item pe-2">Product sfasgsegdgs1wqewq</p>
-                                <p class="list-inline-item pe-2">$20.00</p>
-                                <p class="list-inline-item">x2</p>
+                                <p class="list-inline-item pe-2">name too long</p>
+                                <p class="list-inline-item pe-2">{{item.product.product_price|floatformat:2}}</p>
+                                <p class="list-inline-item">x{{item.quantity}}</p>
                             </div>
                         </div>
-                            <h5 class="py-3">Items:   2</h5>
-                            <h5>Total:   $4</h5>
+                            <hr>
+                        {% endfor%}
+                        <ul class="list-unstyled my-4 text-start mx-auto">
+                            <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                SUBTOTAL
+                                <span class="ms-auto">{{order.get_cart_total|floatformat:2}}</span>
+                            </li>
+
+                            <li class="list-unstyled-item d-flex mb-3">
+                                Delivery (Standard - 2 working days): <br> Change delivery method-this is a link to profile page
+                                <span class="ms-auto">{free}</span>
+                            </li>
+
+                            <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                Promo code:
+                                <span class="ms-auto">{pro o code}</span>
+                            </li>
+
+                            <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                TOTAL (subtotal + delivery + promo):
+                                <span class="ms-auto"> {total}</span> 
+                            </li>
+                        
+                        </ul>
+
                         </div>                    
 
-                
+                        
                                             
-                            <h2 class="section-heading my-3 text-center">
-                                <span class="section-heading-upper">Mpesa Information</span>
-                            </h2>
                             
-                            <div class = "d-flex">
-                            <div class="list-inline ms-0">
-                               
-                                <img class="img-fluid rounded list-inline-item w-25 pb-2 pe-4" src="{% static 'img/image1.jpg' %}">
-                               
-                                <p class="list-inline-item pe-2">Product sfasgsegdgs1wqewq</p>
-                                <p class="list-inline-item pe-2">$20.00</p>
-                                <p class="list-inline-item">x2</p>
-                            </div>
-                        </div>
                         
                     </div>  
                     </div>

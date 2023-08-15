@@ -16,13 +16,13 @@ class Product(models.Model):
     class Meta:
         db_table='product'
 
-    # @property #help us access this as an attribute rather than a model
-    # def product_imagesURL(self):
-    #     try: 
-    #         url = self.product_image.url
-    #     except:
-    #         url = ''
-    #         return url
+    @property #help us access this as an attribute rather than as a model
+    def product_imagesURL(self):
+        try: 
+            url = self.product_image.url
+        except:
+            url = ''
+        return url
 
 class Order (models.Model): ##This basically represents the CART
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
@@ -30,10 +30,21 @@ class Order (models.Model): ##This basically represents the CART
     order_id = models.IntegerField(primary_key=True)
     order_date = models.DateField(auto_now=True) 
     complete = models.BooleanField(default=False) #if complete is false can continue adding items, changes status of cart is it same as order status??
-    order_status = models.CharField(max_length=250)
     cost = models.IntegerField() # total quantity * product_price - discount 
     def __str__(self):
         return str(self.order_id)
+    
+    @property
+    def get_cart_total(self):
+        orderitems= self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+    
+    @property
+    def get_cart_items(self):
+        orderitems= self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
     class Meta:
         db_table='order'
 
@@ -46,6 +57,12 @@ class OrderItem (models.Model): #This items represents items within the cart
     date_added = models.DateField(auto_now=True) #date we added an item to order
     def __str__(self):
         return str(self.product.product_name)
+    
+    @property
+    def get_total(self):
+        product_total = self.product.product_price * self.quantity
+        return product_total
+    
     class Meta:
         db_table='orderItem'
 
