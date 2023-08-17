@@ -18,12 +18,16 @@ def contactus(request):
     if request.method == "POST":
         form = ContactUs(request.POST)
         if form.is_valid():
-           info = Customer(first_name = request.POST.get('first_name'), last_name = request.POST.get('last_name'), email = request.POST.get('email'), gender = request.POST.get('gender'), phone_number = request.POST.get('phone_number'), address = request.POST.get('address'))
+           info = Complaints(first_name = request.POST.get('first_name'), 
+                           last_name = request.POST.get('last_name'),
+                           email = request.POST.get('email'), 
+                           gender = request.POST.get('gender'), 
+                           phone_number = request.POST.get('phone_number'),
+                           issue = request.POST.get('issues'), 
+                           other = request.POST.get('other')) 
+                           
            info.save()
      
-           co = Complaints(issue = request.POST.get('issues'), other = request.POST.get('other'))
-           co.save()
-
         #use the following line when redirecting to user a/c page once I create the form
         #return HttpResponseRedirect(#url of page to redirect to #)
 

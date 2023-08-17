@@ -11,13 +11,13 @@
                     
                     <div class="col-lg-8 col-xl-8 mx-auto mb-2">
                         <i class="fas fa-arrow-left"></i>
-                        <span><a href = '/products' class="text-uppercase text-decoration-none fw-bold pe-4 text-black"> Continue shopping </a></span>
+                        <span><a href = '/products' class="text-uppercase pe-4"> Continue shopping </a></span>
                     </div>
 
                     
                     <div class="row col-lg-8 col-xl-8 bg-faded mx-auto">
                         <h2 class="section-heading mt-4 text-center">
-                            <span class="section-heading-upper">Your Bag! {{order.get_cart_items}} items</span>
+                            <span class="section-heading-upper">Your Cart! {{order.get_cart_items}} items</span>
                         </h2>
                     
                         {% for item in items %}

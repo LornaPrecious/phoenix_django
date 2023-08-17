@@ -8,20 +8,29 @@
         <section class="page-section cta">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-9 mx-auto">
+                    <div class="col-xl-6 mx-auto">
                         <div class="cta-inner bg-faded text-center rounded">
                             <h2 class="section-heading mb-5">
                                 <span class="section-heading-upper">WELCOME</span>
                                 <span class="section-heading-lower">LOGIN</span>
                             </h2>
 
-                            <form  method = 'POST' class = "form-group">
+                            <form  method = 'POST' class = "row g-3">
                     
                                         {% csrf_token %} 
-                                        {{form|crispy}}
+                                        <div class="col-md-12">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input required type="text" class="form-control" id="username" autocomplete="username">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input required type="text" class="form-control" id="username" autocomplete="current-password">
+                                        </div>       
+
                                 <p> Forgot your password? Don't fret <a href = "{% url "password_reset" %}"> Reset it </a> </p>
-                                <div class = "intro-button mx-auto">
-                                <button type="submit" name = 'save' class ='btn mt-3 btn-primary btn-xl mb-2' > login </button>  </div>
+                                <div class="col-12 text-center mb-3">
+                                    <input type="submit" class="btn btn-outline-primary btn-lg1" value="Login">
+                                    </div>
                                 <p> Don't have an account?<a href = '/register'> Sign up </a> </p>
                             </form>    
 

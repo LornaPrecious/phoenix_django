@@ -9,6 +9,16 @@ def products(request):
 def store(request):
    return render(request, "productManagement/store.html")
 
+def dresses(request):
+   products = Product.objects.all()
+   context = {'products': products}
+   return render(request, "productManagement/dresses.html", context)
+
+def product_view(request):
+   context = {}
+   return render(request, "productManagement/product_view.html", context)
+
+
 def cart(request):
    if request.user.is_authenticated:
       customer = request.user.customer
@@ -17,7 +27,7 @@ def cart(request):
 
    else: #if user isn't authenticated/hasn't logged in
       items = []
-      order = {'get_cart_total': 0, 'get_cart_items':0 }
+      order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
    context ={'items': items, 'order': order}
    return render(request, "productManagement/cart.html", context)
 
@@ -29,18 +39,10 @@ def checkout(request):
 
    else: #if user isn't authenticated/hasn't logged in
       items = []
-      order = {'get_cart_total': 0, 'get_cart_items':0 }
+      order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
    context = {'items': items, 'order': order}
    return render(request, "productManagement/checkout.html", context)
 
-def dresses(request):
-   products = Product.objects.all()
-   context = {'products': products}
-   return render(request, "productManagement/dresses.html", context)
-
-def product_view(request):
-   context = {}
-   return render(request, "productManagement/product_view.html", context)
 
 def updateItem(request):
    data = json.loads(request.body)

@@ -8,21 +8,134 @@
         <section class="page-section cta">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-9 mx-auto">
+                    <div class="col-xl-8 col-lg-8 mx-auto">
                         <div class="cta-inner bg-faded text-center rounded">
                             <h2 class="section-heading mb-5">
                                 <span class="section-heading-upper">WELCOME</span>
                                 <span class="section-heading-lower">Create an account</span>
                             </h2>
 
-                            <form  method = 'POST' class = "form-group">
+                            <form  method = 'POST' class = "row g-3" action ="{% url 'register' %}">
                     
                                         {% csrf_token %}
-                                        {{form|crispy}}
+                                       
+                                        <div class="col-md-4">
+                                            <p class="text-start"> Name: </p>
 
-                                        <div class = "intro-button mx-auto">
-                                            <button type="submit" name = 'save' class ='btn mt-2 btn-primary btn-xl mb-2' >Sign up!</button>           
                                         </div>
+                                        <div class="col-md-3">
+                                            <input required type="text" class="form-control" id="fname" autocomplete="given-name">
+                                            <label for="fname" class="form-label">First name</label>
+                                        </div>
+
+                                            <div class="col-md-3">
+                                                <input required type="text" class="form-control" id="lname" autocomplete="family-name">
+                                                <label for="lname" class="form-label">Last name</label>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Phone number: </p>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                             
+                                                <input required type="text" class="form-control" autocomplete="tel">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Email address: </p>
+
+                                            </div>
+                                            <div class="col-md-6">                                            
+                                                <input required type="email" class="form-control" autocomplete="email">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Username: </p>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input required type="text" class="form-control" autocomplete="username">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Password: </p>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input required type="text" class="form-control"  autocomplete="new-password">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Confirm password: </p>
+
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <input required type="text" class="form-control"  autocomplete="current-password">
+                                            </div>
+
+
+                                            <div class="col-md-12">
+                                                <p class="text-start">Gender: </p>
+                                                <ul class="list-unstyled">
+                                                <li class="d-block w-30 float-start"><input required type="radio" class="option-input" name="gender" id="male" autocomplete="sex">
+                                                <label for="male" class="form-check-label">Male</label> </li>                                            
+                                    
+                                                <li class="d-block w-30 float-start"><input required type="radio" class="option-input" id="female" name="gender" autocomplete="sex">
+                                                <label for="female" class="form-check-label">Female</label> </li>
+
+                                                <li class="d-block w-30 float-start"><input required type="radio" class="option-input" id="other" name="gender" autocomplete="sex">
+                                                    <label for="other" class="form-check-label">Other</label> </li>
+
+                                                </ul>
+                                            </div> 
+
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Address: </p>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" placeholder="1234 Main St" autocomplete="address-line1">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Address 2: </p> </div>
+
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control"  placeholder="Apartment, studio, or floor" autocomplete="address-line2">
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label for="inputCountry" class="form-label">Country</label>
+                                                <input type="text" class="form-control" id="inputCountry"  autocomplete="country-name">
+                                            </div>
+        
+                                            <div class="col-md-4">
+                                            <label for="inputcity" class="form-label">City/County</label>
+                                            <select id="inputcity" class="form-select"  autocomplete="off">
+                                                <option selected>Choose...</option>
+                                                <option>...</option>
+                                            </select>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                            <label for="inputZip" class="form-label">Zip</label>
+                                            <input type="text" class="form-control" id="inputZip"  autocomplete="postal-code">
+                                            </div>
+
+                                          
+                                            
+                                            <div class="col-12 text-center my-5">
+                                            <input type="submit" class="btn btn-outline-primary btn-lg1" value="Sign up!">
+                                            </div>
+                                        </form>
+
+                                         
+
                                     <p> You already have an account?<a href = '/login'> Login </a> </p>
                                 
                             </form>    
