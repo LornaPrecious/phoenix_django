@@ -72,9 +72,9 @@
                                             <span class="ms-auto">{{order.get_cart_total|floatformat:2}}</span>
                                         </li>
 
-                                       
+                                       <form>
                                         <li class="list-unstyled-item d-flex mb-3">
-                                            <input type="checkbox" name="discountCode" checked>
+                                            <input type="checkbox" id="discountCode" checked>
                                             <label for="discountCode" class="form-label">I have a DISCOUNT code</label>                                            
                                         </li>
 
@@ -82,6 +82,7 @@
                                            <input type="text" name="promo-checkbox" placeholder="Enter your promo code here" checked class="form-control"> 
                                             <span class = "ms-auto"><input class="btn btn-primary ms-5" type="submit" value="Apply"></span> 
                                         </li>
+                                        </form>
 
                                     </ul>
                                     

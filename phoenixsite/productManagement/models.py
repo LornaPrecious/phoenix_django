@@ -1,3 +1,4 @@
+from time import timezone
 from django.db import models
 from main.models import Customer
 
@@ -25,12 +26,12 @@ class Product(models.Model):
         return url
 
 class Order (models.Model): ##This basically represents the CART
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
 
-    order_id = models.IntegerField(primary_key=True)
+    order_id = models.IntegerField(primary_key=True, default=timezone)
     order_date = models.DateField(auto_now=True) 
     complete = models.BooleanField(default=False) #if complete is false can continue adding items, changes status of cart is it same as order status??
-    cost = models.IntegerField() # total quantity * product_price - discount 
+    cost = models.FloatField(null=True, blank=True) # total quantity * product_price - discount 
     def __str__(self):
         return str(self.order_id)
     
@@ -79,10 +80,12 @@ class OrderItem (models.Model): #This items represents items within the cart
     
 class ShippingAddress(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
 
-    shipping_code = models.CharField(max_length=20, primary_key=True)
-    address = models.CharField(max_length=200)
+    shipping_code = models.IntegerField(primary_key=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
+    address2 = models.CharField(max_length=250, null=True, blank=True)
+    country =models.CharField(max_length=250, null=True, blank=True)
     city = models.CharField(max_length=200)
     zipcode = models.CharField(max_length=200)
     delivery_cost = models.FloatField() #depending with location, product_weight, any discounts
@@ -92,16 +95,16 @@ class ShippingAddress(models.Model):
     class Meta:
         db_table='shippingAddress'
 
-    @property
-    def get_full_total(self):
-        if (self.order.get_cart_total >= 5499):
-            full_total = (self.order.get_cart_total - (self.order.get_cart_total * 0.13)) + self.delivery_cost
+#    @property
+#     def get_full_total(self):
+#         if (self.order.get_cart_total >= 5499):
+#             full_total = (self.order.get_cart_total - (self.order.get_cart_total * 0.13)) + self.delivery_cost
 
-        elif(self.order.get_cart_total >= 2499 and self.order.get_cart_total <= 5498):
-            full_total =(self.order.get_cart_total - (self.order.get_cart_total * 0.10)) + self.delivery_cost
-        else:
-            full_total = self.order.get_cart_total + self.delivery_cost 
-        return full_total
+#         elif(self.order.get_cart_total >= 2499 and self.order.get_cart_total <= 5498):
+#             full_total =(self.order.get_cart_total - (self.order.get_cart_total * 0.10)) + self.delivery_cost
+#         else:
+#             full_total = self.order.get_cart_total + self.delivery_cost 
+#         return full_total
 
 
 class PaymentInfo(models.Model):
@@ -144,7 +147,7 @@ class Complaints(models.Model):
     first_name = models.CharField(max_length= 100, null=True, blank=True)
     last_name = models.CharField(max_length= 100, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    phone_number = models.IntegerField(help_text='0712345678 or +254712345678', null=True, blank=True) #look for a validator, ie. regex 
+    phone_number = models.IntegerField(null=True, blank=True) #look for a validator, ie. regex 
     gender = models.CharField(max_length=20, null=True, blank=True)
     issue = models.CharField(max_length=300, null=True, blank=True)
     other = models.TextField(null=True, blank=True)

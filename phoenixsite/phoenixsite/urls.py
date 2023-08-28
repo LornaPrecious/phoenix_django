@@ -35,10 +35,11 @@ urlpatterns = [
     path('dresses/', pv.dresses, name = 'dresses'),
     path('product_view/', pv.product_view, name='product_view'),
     path('update_item/', pv.updateItem, name='update_item'),
+    path('process_order/', pv.processOrder, name='process_order'),
     
     path('register/', v.register, name ='register'),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),                                           
+    path('login/', v.custom_login, name='login'),                                           
     path('password-reset/', auth_views.PasswordResetView.as_view(
         template_name='registration/password_reset_form.html',
         html_email_template_name='registration/password_reset_email.html'

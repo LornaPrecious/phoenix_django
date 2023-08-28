@@ -15,71 +15,93 @@
                         </h2>
 
                     
-                        <div class="col-lg-6 col-xl-6" id = "shipping-info">
-                            <div class ="bg-faded rounded p-4">  
-                                <form class="row" id = "form-g-3">
+                        <div class="col-lg-6 col-xl-6">
+                            <div class ="bg-faded rounded p-4 mt-4" id="wrapper">  
+                                <form id = "form" method="POST" action="/checkout/">
                                     {% csrf_token %}
-                                    <div class="col-md-6">
-                                    <label for="fname" class="form-label">First name</label>
-                                    <input required type="text" class="form-control" id="fname" autocomplete="given-name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="lname" class="form-label">Last name</label>
-                                        <input required type="text" class="form-control" id="lname" autocomplete="family-name">
+                                  
+                                    <div id = "user-info" class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="fname" class="form-label">First name</label>
+                                            <input required type="text" class="form-control" id="fname" name="fname" autocomplete="given-name">
                                         </div>
-                                    <div class="col-md-6">
-                                    <label for="phonenumber" class="form-label">Phone Number</label>
-                                    <input required type="text" class="form-control" id="phonenumber" autocomplete="tel">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">Email address</label>
-                                        <input required type="email" class="form-control" id="email" autocomplete="email">
-                                    </div>
-                                    <div class="col-12">
-                                    <label for="inputAddress" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" autocomplete="address-line1">
-                                    </div>
-                                    <div class="col-12">
-                                    <label for="inputAddress2" class="form-label">Address 2</label>
-                                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" autocomplete="address-line2">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="inputCountry" class="form-label">Country</label>
-                                        <input type="text" class="form-control" id="inputCountry"  autocomplete="country-name">
+                                        <div class="col-md-6">
+                                            <label for="lname" class="form-label">Last name</label>
+                                            <input required type="text" class="form-control" id="lname" name="lname" autocomplete="family-name">
+                                        </div>
+                                    
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email address</label>
+                                            <input required type="email" class="form-control" id="email" name="email" autocomplete="email">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="phonenumber" class="form-label">Phone Number</label>
+                                            <input required type="text" class="form-control" id="phonenumber" name="phonenumber" autocomplete="tel">
+                                         </div>
+                                        <div class="col-12 text-center">
+                                            <input type="submit"  id ="form-button" class="btn btn-outline-primary btn-lg1" value="Continue">
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-4">
-                                    <label for="inputcity" class="form-label">City/County</label>
-                                    <select id="inputcity" class="form-select"  autocomplete="off">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                    <label for="inputZip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip"  autocomplete="postal-code">
-                                    </div>
-                                    <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                                        <label class="form-check-label" for="gridCheck">
-                                        Receive notifications
-                                        </label>
-                                    </div>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                    <input id ="form-button" type="submit" class="btn btn-outline-primary btn-lg1" value="Continue">
+                                    <div id="shipping-info" class="g-3 row">
+                                        
+                                        <div class="col-12">
+                                            <label for="address" class="form-label">Address</label>
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="Street name..." autocomplete="address-line1">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="address2" class="form-label">Address 2</label>
+                                            <input type="text" class="form-control" id="address2" name="address2" placeholder="Apartment, studio, or floor" autocomplete="address-line2">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="country" class="form-label">Country</label>
+                                            <input type="text" class="form-control" id="country" name="country" autocomplete="country-name">
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label for="city" class="form-label">County</label>
+                                            <select id="city" class="form-select" id="city" name="city" autocomplete="off">
+                                                <option selected>Nairobi</option>
+                                                <option>Kiambu</option>
+                                                <option>Nakuru</option>
+                                                <option>Naivasha</option>
+                                                <option>Meru</option>
+                                                <option>Embu</option>
+                                                <option>Kirinyaga</option>
+                                                <option>Mombasa</option>
+                                            </select>
+                                            </div>
+
+                                        <div class="col-md-2">
+                                            <label for="zipcode" class="form-label">Zip</label>
+                                            <input type="text" class="form-control" id="zipcode" name="zipcode"  autocomplete="postal-code">
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                <label class="form-check-label" for="gridCheck">
+                                                Receive notifications
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <input type="submit"  id ="form-button" class="btn btn-outline-primary btn-lg1" value="Continue">
+                                        </div>
+
                                     </div>
                                 </form>
                             
                             </div>
 
-                            <div class ="col-lg-12 col-xl-12 invisible d-none" id = "payment-info">
-                                <div class = "bg-faded row rounded">
+                            <div class ="col-lg-12 invisible d-none" id = "payment-info"> 
+                                <div class = "bg-faded row rounded my-4">
                                     <h2 class="section-heading my-3 text-center">
                                         <span class="section-heading-upper">Payment Information</span>
                                     </h2>
-    
+                                    <div class="text-center mb-4">
+                                    <button id = "make-payment" class="btn btn-primary"> Make payment</button>
+                                    </div>
     
     
                                 </div>                               
@@ -116,7 +138,7 @@
 
                                 <li class="list-unstyled-item d-flex mb-3">
                                     Delivery (Standard - 2 working days): <br> <a href = "#">Change delivery method-this is a link to profile page </a>
-                                    <span class="ms-auto">{{shippingAddress.delivery_cost}}</span>
+                                    <span class="ms-auto">{delivery cost}</span>
                                 </li>
 
                                 <li class="list-unstyled-item d-flex mb-3 fw-bold">
@@ -126,21 +148,15 @@
 
                                 <li class="list-unstyled-item d-flex mb-3 fw-bold">
                                     TOTAL (subtotal + delivery + promo):
-                                    <span class="ms-auto"> {{shippingAddress.get_full_total}}</span> 
+                                    <span class="ms-auto"> {full total} </span> 
                                 </li>
                             
                             </ul>
 
-                            </div>                    
-
-                            
-                                                
+                            </div>                                                                
                                 
                             
-                        </div> 
-
-                        
-                        
+                        </div>    
                     
                     </div>
 
@@ -151,22 +167,97 @@
 
         <script type="text/javascript">
             var shipping = '{{order.shipping}}'
+            var total = '{{order.get_cart_total}}'
 
             if(shipping == 'False'){
                 document.getElementById('shipping-info').innerHTML=''
             }
 
-            document.addEventListener('DOMContentLoaded', function() {
-                var form = document.getElementById('form-g-3')
-                form.addEventListener('submit', function(e){
-                    e.preventDefault()
-                    console.log('Form Submitted...')
-                    document.getElementById('form-button').classList.add('hidden');
-                    document.getElementById('payment-info').classList.remove('hidden');
+            if(user !='AnonymousUser'){
+                document.getElementById('user-info').innerHTML=''
+            }
+
+            if(shipping=='False' && user != 'AnonymousUser'){
+                document.getElementById('wrapper').classList.add('invisible');
+                document.getElementById('wrapper').classList.add('d-none');
+                document.getElementById('payment-info').classList.remove('invisible');
+                document.getElementById('payment-info').classList.remove('d-none');
+            }
+
+
+            var form= document.getElementById('form')
+                
+            form.addEventListener('submit', function(e){
+                e.preventDefault()
+                console.log('Form Submitted...')
+                document.getElementById('form-button').classList.add('invisible');
+                document.getElementById('form-button').classList.add('d-none');
+                document.getElementById('payment-info').classList.remove('invisible');
+                document.getElementById('payment-info').classList.remove('d-none'); })
+
+            document.getElementById('make-payment').addEventListener('click', function(e){
+                submitFormData()
+            })    
+        
+            function submitFormData(){
+                console.log('Payment button clicked')
+                
+                var userFormData = {
+                    'fname': null,
+                    'lname': null,
+                    'email': null,
+                    'phonenumber': null,
+                    'total': total,
+                }
+
+                var shippingInfoData = {
+                    'address': null,
+                    'address2': null,
+                    'country': null,
+                    'city': null,
+                    'zipcode': null,
+                }
+
+                if(shipping != 'False'){
+                    shippingInfoData.address = form.address.value
+                    shippingInfoData.address2 = form.address2.value
+                    shippingInfoData.country = form.country.value
+                    shippingInfoData.city = form.city.value
+                    shippingInfoData.zipcode = form.zipcode.value
+                }
+
+                if(user == 'AnonymousUser'){
+                    userFormData.fname = form.fname.value
+                    userFormData.lname = form.lname.value
+                    userFormData.email = form.email.value
+                    userFormData.phonenumber= form.phonenumber.value                   
+                }
+
+                var url = "/process_order/"
+                fetch(url, {
+                    method:'POST',
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body: JSON.stringify({
+                        'form': userFormData, 'shipping': shippingInfoData})
                 })
-        })
+                
+                .then((response) => {
+                    response.json()
+                })
+                .then((data) => {
+                    console.log('success:', data);
+                    alert('Transaction completed');
+                    window.location.href= "{% url 'home' %}"
+                });
+
+            }
 
             
+                
+
         </script> 
         
         {% endblock %}

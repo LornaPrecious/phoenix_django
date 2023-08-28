@@ -11678,26 +11678,3 @@ p {
 }
 
 /* box-shadow: 0 3px 6px 2px darken(whitesmoke, 10%); */
-
-
-#payment-info{
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
-   
-}
-
-#shipping-info{
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
-}
-
-#form-button{
-  width: 70%;
-  font-size: 1.25rem;
-  border-radius: 0.3rem;
-}
-
-#form-g-3{
-  --bs-gutter-x: 1rem;
-  --bs-gutter-y: 1rem;
-}

@@ -15,16 +15,16 @@
                                 <span class="section-heading-lower">LOGIN</span>
                             </h2>
 
-                            <form  method = 'POST' class = "row g-3">
+                            <form  method = 'POST' class = "row g-3" action="/login/">
                     
                                         {% csrf_token %} 
                                         <div class="col-md-12">
                                             <label for="username" class="form-label">Username</label>
-                                            <input required type="text" class="form-control" id="username" autocomplete="username">
+                                            <input required type="text" class="form-control" id="username" name="username" autocomplete="username">
                                         </div>
                                         <div class="col-md-12">
                                             <label for="password" class="form-label">Password</label>
-                                            <input required type="text" class="form-control" id="username" autocomplete="current-password">
+                                            <input required type="password" class="form-control" id="password" name="password" autocomplete="current-password">
                                         </div>       
 
                                 <p> Forgot your password? Don't fret <a href = "{% url "password_reset" %}"> Reset it </a> </p>

@@ -6,15 +6,12 @@
 // Highlights current date on contact page
 window.addEventListener('DOMContentLoaded', event => {
     const listHoursArray = document.body.querySelectorAll('.list-hours li');
+   
+    const dayIndex = new Date().getDay();
 
-    const dayIndex = [new Date().getDay()];
     if (dayIndex >= 0 && dayIndex < listHoursArray.length) {
-        listHoursArray[dayIndex].classList.add(('today'));
-    }
-    //listHoursArray[new Date().getDay()].classList.add(('today'));
+    listHoursArray[dayIndex].classList.add('today');
+} })
 
-    console.log(listHoursArray.length);
-    console.log(dayIndex);
-
-})
-
+console.log(listHoursArray.length);
+console.log(dayIndex);

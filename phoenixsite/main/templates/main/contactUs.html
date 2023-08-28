@@ -19,27 +19,39 @@
                                         {% csrf_token %}
                                                                     
                                       
-                                            <div class="col-md-6">
-                                            <label for="fname" class="form-label">First name</label>
+                                        <div class="col-md-4">
+                                            <p class="text-start"> Name: </p>
+
+                                        </div>
+                                        <div class="col-md-3">
                                             <input required type="text" class="form-control" id="fname" autocomplete="given-name">
-                                            </div>
+                                            <label for="fname" class="form-label">First name</label>
+                                        </div>
 
-                                            <div class="col-md-6">
-                                                <label for="lname" class="form-label">Last name</label>
+                                            <div class="col-md-3">
                                                 <input required type="text" class="form-control" id="lname" autocomplete="family-name">
+                                                <label for="lname" class="form-label">Last name</label>
                                             </div>
 
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Phone number: </p>
+
+                                            </div>
                                             <div class="col-md-6">
-                                            <label for="phonenumber" class="form-label">Phone Number</label>
-                                            <input required type="text" class="form-control" id="phonenumber" autocomplete="tel">
+                                             
+                                                <input required type="text" class="form-control" autocomplete="tel">
                                             </div>
 
-                                            <div class="col-md-6">
-                                                <label for="email" class="form-label">Email address</label>
-                                                <input required type="email" class="form-control" id="email" autocomplete="email">
+                                            <div class="col-md-4">
+                                                <p class="text-start"> Email address: </p>
+
+                                            </div>
+                                            <div class="col-md-6">                                            
+                                                <input required type="email" class="form-control" autocomplete="email">
                                             </div>
 
-                                           <p> My concern/s is/ are: </p>
+
+                                           <p class="text-start"> My concern/s is/ are: </p>
                                             <div class="col-12">
                                                 <ul class="list-unstyled">
                                                 <li class="d-block w-25 float-start"><input type="checkbox" class="option-input" id="damaged" name="damaged">
