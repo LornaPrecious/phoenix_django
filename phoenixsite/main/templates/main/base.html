@@ -51,13 +51,39 @@
         </div>
         {% endfor%}
         <header>
-
-            <div class = "px-5 pt-4 text-end d-none d-lg-block">
-                <a class="btn btn-primary me-4" href="{% url "register" %}">Sign up</a></li>
-                <a class="btn btn-primary me-4" href="{% url "login" %}">Login</a></li>
-               <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i> </a> </li>
+        
+            {% if not user.is_authenticated %}
+            <div class = "px-5 pt-4 text-end d-none d-lg-block">    
+                <a class="btn btn-primary me-4" href="{% url "register" %}">Sign up</a> 
+                <a class="btn btn-primary me-4" href="{% url "login" %}">Login</a> 
+                <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i> </a> 
+                
             </div>
+
+            {% else %}
+            <div class = "px-5 pt-4 d-none text-end d-lg-block">  
+            <ul class="list-unstyled">  
+              <li class="d-block float-end me-2"><a class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#profilePopuplg" aria-controls="profilePopuplg" role="button" data-toggle="dropdown" aria-expanded="false"></a></li>       
+              <li class="d-block float-end me-2"> <p class="text-capitalize fw-bold" style="color: #ffffff;">Hello {{user.username}}!</p></li>
+              <li class="d-block float-end me-4"> <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i> </a> </li>
+                  
+            </ul>
+            </div>
+
             
+            <div style="min-height: 120px;" class="d-lg-block d-none float-end">
+                <div class="collapse collapse-horizontal" id="profilePopuplg">
+                  <div class="card card-body" style="width: 300px;">
+                    <a class="nav-link text-uppercase" href="#">My profile</a>
+                    <a class="nav-link text-uppercase" href="#">Logout</a>
+                  </div>
+                </div>
+              </div>
+
+           
+
+            {% endif %}
+                           
        
             <h1 class="site-heading text-center text-faded d-none d-lg-block">
                 <span class="site-heading-upper text-primary mb-3">Indulge in the luxulry of healthy hair</span>
@@ -68,111 +94,78 @@
            
         </header>
         <!-- Navigation-->
+        {% if not user.is_authenticated %}
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
             <div class="container">
                 <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="{% url "home" %}">PHOENIX ORGANICS</a>
+
                 <div class = "d-lg-none">
-                    <a class="me-3" href="{% url "register" %}">Sign up</a></li>
-                    <a class="me-3" href="{% url "login" %}">Login</a></li>
-                    <a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg me-3" style="color: #000000; cursor: pointer;"></i> </a></li>
-                </div>
+                    <a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000; cursor: pointer;"></i> </a> </div>
+                                   
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "home" %}">Home</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "aboutus" %}">About</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "products" %}">Products</a>
-                            <!--
-                            <table class = "dropdownNav">
-                                <tr>
-                                <th>HAIR PRODUCTS </th>
-                                <th>DRESSES</th>
-                                <th>JEWELRY</th>
-                                </tr>
-    
-                               HAIR PRODUCTS LIST 
-                                <tr>
-                                    <table>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Clarifying Shampoo</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Hydrating deep conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Oil</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Leave in conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Detangler</a></td>
-                                        </tr>
-                                    </table>
-                                </tr>
-    
-                                
-                                 dress PRODUCTS LIST 
-                                <tr>
-                                    <table>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Clarifying Shampoo</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#"> dress</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Hydrating deep conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Oil</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Leave in conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Detangler</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Leave in conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Detangler</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Leave in conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Detangler</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                    </table>
-                                
-    
-                               Jewelry PRODUCTS LIST 
-                                <tr>
-                                    <table>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Clarifying Shampoo</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Moisturizing conditioner</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Hydrating deep conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Oil</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td> <a class="nav-link text-uppercase" href="#">Leave in conditioner</a></td>
-                                            <td> <a class="nav-link text-uppercase" href="#">Detangler</a></td>
-                                        </tr>
-                                    </table>
-                                </tr>
-    
-                            </table> -->
-
-                        
-                        </li>                                                
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "products" %}">Products</a></li>                                                
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "store" %}">Store</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "contactus" %}">Contact Us</a></li>
                     </ul>
+                   
+                    <div class = "d-lg-none">
+                        <a class="me-3 btn btn-primary" href="{% url "register" %}">Sign up</a>
+                        <a class="me-3 btn btn-primary" href="{% url "login" %}">Login</a>
+                    </div>
+
+                   
                 </div>
+
             </div>
         </nav>
+
+        {% else %}
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container my-1">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="{% url "home" %}">PHOENIX ORGANICS</a>
+
+                <div class = "d-lg-none">
+                    <ul class="list-unstyled pt-2"> 
+                        <li class="d-block float-end py-1"><a class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#profilePopup" aria-controls="profilePopup" role="button" data-toggle="dropdown" aria-expanded="false"></a></li> 
+                        <li class="d-block float-end py-1 me-2"><p class="text-uppercase fw-bold" style="color:#000000;">Hello {{user.username}}!</p> </li>     
+                        <li class="d-block float-end me-4"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> </li>
+                        <li class="d-block float-end me-4 py-1"><a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000; cursor: pointer;"></i> </a></li>
+                        
+                    </ul>
+                    
+                </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "home" %}">Home</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "aboutus" %}">About</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "products" %}">Products</a></li>                                                
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "store" %}">Store</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "contactus" %}">Contact Us</a></li>
+                    </ul>
+                  
+                </div>
+
+                <div class = "d-lg-none" style="min-height: 120px;">
+                    <div class="collapse collapse-horizontal" id="profilePopup">
+                      <div class="card card-body" style="width: 300px;">
+                        <a class="nav-link text-uppercase" href="#">My profile</a>
+                        <a class="nav-link text-uppercase" href="#">Logout</a>
+                      </div>
+                    </div>
+                  </div> 
+    
+
+            </div>
+        </nav>
+
+
+        {% endif %}
+
+        
             
         {% block pagecontent %} {% endblock %}
 

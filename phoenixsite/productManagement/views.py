@@ -26,8 +26,7 @@ def cart(request):
    if request.user.is_authenticated:
       customer = request.user.customer
       order, created = Order.objects.get_or_create(customer=customer, complete=False) #creating/quering an object
-      order.save()
-     
+  
       items = order.orderitem_set.all()
 
    else: #if user isn't authenticated/hasn't logged in
