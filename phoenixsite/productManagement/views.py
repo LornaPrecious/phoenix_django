@@ -26,7 +26,7 @@ def cart(request):
    if request.user.is_authenticated:
       customer = request.user.customer
       order, created = Order.objects.get_or_create(customer=customer, complete=False) #creating/quering an object
-  
+     
       items = order.orderitem_set.all()
 
    else: #if user isn't authenticated/hasn't logged in
@@ -34,7 +34,7 @@ def cart(request):
       order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
 
    context ={'order': order, 'items': items}
-   return render(request, "productManagement/cart.html", context)
+   return render(request, "productManagement/cart.html", context) 
 
 def checkout(request):
    if request.user.is_authenticated:
@@ -48,7 +48,7 @@ def checkout(request):
       order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
 
    context = {'items': items, 'order': order}
-   return render(request, "productManagement/checkout.html", context)
+   return render(request, "productManagement/checkout.html", context) 
 
 
 def updateItem(request):
@@ -96,16 +96,16 @@ def processOrder(request):
          order.complete = False
 
       if order.shipping == True:
-         ShippingAddress.objects.create(
-            customer=customer,
-            order = order,
-            address = data['shipping']['address'],
-            address2 = data['shipping']['address2'],
-            country = data['shipping']['country'],
-            city = data['shipping']['city'],
-            zipcode = data['shipping']['zipcode'],
-         )
+         if request.method == "POST":
+            address = request.Post['address']
+            address2 = request.Post['address2']
+            country = request.Post['country']
+            city = request.POST['city']
+            zipcode = request.POST['zipcode']
 
+            shipping = ShippingAddress(address=address, address2=address2, country=country, city=city, zipcode=zipcode)
+            shipping.save()
+         
    else:
       print('User is not logged in')
 

@@ -25,10 +25,11 @@ class Product(models.Model):
             url = ''
         return url
 
+
 class Order (models.Model): ##This basically represents the CART
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
 
-    order_id = models.IntegerField(primary_key=True, default=timezone)
+    order_id = models.IntegerField(primary_key=True, unique=True)
     order_date = models.DateField(auto_now=True) 
     complete = models.BooleanField(default=False) #if complete is false can continue adding items, changes status of cart is it same as order status??
     cost = models.FloatField(null=True, blank=True) # total quantity * product_price - discount 
@@ -106,12 +107,11 @@ class ShippingAddress(models.Model):
 #             full_total = self.order.get_cart_total + self.delivery_cost 
 #         return full_total
 
-
+         
 class PaymentInfo(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)#reference to cutomerID
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)#orderID for product being paid
-    shippingAddress = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
-
+ 
     payment_code = models.CharField(max_length= 20, primary_key=True)
     payment_type = models.CharField(max_length= 250, help_text="Mpesa(Kenyan phone numbers only)")
     payment_phone = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
@@ -124,7 +124,6 @@ class PaymentInfo(models.Model):
 
 class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
     product = models.ForeignKey(Product, models.SET_NULL, blank=True, null = True)
-    order = models.ForeignKey(Order, models.SET_NULL, blank=True, null = True)
     shippingAddress = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
 
     coupon_code = models.CharField(max_length = 20, primary_key=True)
@@ -135,13 +134,11 @@ class Offer(models.Model): #can I apply these discounts to the other tables and 
     class Meta:
         db_table='offer'
 
-    
 
 class Complaints(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null = True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null = True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null = True)#orderID for product being paid
-    shipping = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
+    
 
     complaint_code = models.CharField(max_length=20)
     first_name = models.CharField(max_length= 100, null=True, blank=True)
@@ -155,3 +152,6 @@ class Complaints(models.Model):
         return self.complaint_code
     class Meta:
         db_table='complaints'
+
+    
+
