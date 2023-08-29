@@ -29,7 +29,7 @@ class Product(models.Model):
 class Order (models.Model): ##This basically represents the CART
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
 
-    order_id = models.IntegerField(primary_key=True, unique=True)
+    order_id = models.AutoField(primary_key=True, unique=True, auto_created=True)
     order_date = models.DateField(auto_now=True) 
     complete = models.BooleanField(default=False) #if complete is false can continue adding items, changes status of cart is it same as order status??
     cost = models.FloatField(null=True, blank=True) # total quantity * product_price - discount 
