@@ -39,7 +39,10 @@ urlpatterns = [
     
     path('register/', v.register, name ='register'),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('login/', v.custom_login, name='login'),                                           
+    path('login/', v.custom_login, name='login'), 
+    path('logout/', v.signout, name='signout'), 
+    path('activate/<uidb64>/<token>', v.activate, name='activate'),
+
     path('password-reset/', auth_views.PasswordResetView.as_view(
         template_name='registration/password_reset_form.html',
         html_email_template_name='registration/password_reset_email.html'

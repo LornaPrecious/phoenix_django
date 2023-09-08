@@ -3,10 +3,22 @@ from django.http import HttpResponse, HttpResponseRedirect
 #from .models import Product
 from .forms import ContactUs
 from . models import Customer
-from productManagement.models import Complaints
+from productManagement.models import Complaints, Order
 
 def index(request):
-    return render(request, "main/base.html", {})
+    if request.user.is_authenticated:
+      customer = request.user.customer
+      order, created = Order.objects.get_or_create(customer=customer, complete=False)
+      items = order.orderitem_set.all()
+      cartItems = order.get_cart_items
+
+    else: #if user isn't authenticated/hasn't logged in
+      items = []
+      order = {'get_cart_total': 0, 'get_cart_items':0}
+      cartItems = order['get_cart_items']
+
+    context ={'items': items, 'order': order, 'cartItems': cartItems}
+    return render(request, "main/base.html", context)
 
 def home(request):
     return render(request, "main/index.html")

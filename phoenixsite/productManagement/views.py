@@ -8,8 +8,7 @@ def products(request):
    return render(request, "productManagement/products.html")
 
 def store(request):
-   #items = order.orderitem_set.all()
-   #cartItems = order.get_cart_items
+  
    return render(request, "productManagement/store.html")
 
 def product_view(request):
@@ -28,12 +27,13 @@ def cart(request):
       order, created = Order.objects.get_or_create(customer=customer, complete=False) #creating/quering an object
      
       items = order.orderitem_set.all()
-
+      cartItems = order.get_cart_items
    else: #if user isn't authenticated/hasn't logged in
       items = []
       order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
+      cartItems = order['get_cart_items']
 
-   context ={'order': order, 'items': items}
+   context ={'order': order, 'items': items, 'cartItems': cartItems}
    return render(request, "productManagement/cart.html", context) 
 
 def checkout(request):
@@ -42,12 +42,13 @@ def checkout(request):
       order, created = Order.objects.get_or_create(customer=customer, complete=False) #creating/quering an object
    
       items = order.orderitem_set.all()
-
+      cartItems = order.get_cart_items
    else: #if user isn't authenticated/hasn't logged in
       items = []
       order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
+      cartItems = order['get_cart_items']
 
-   context = {'items': items, 'order': order}
+   context = {'items': items, 'order': order, 'cartItems': cartItems}
    return render(request, "productManagement/checkout.html", context) 
 
 

@@ -63,19 +63,19 @@
             {% else %}
             <div class = "px-5 pt-4 d-none text-end d-lg-block">  
             <ul class="list-unstyled">  
-              <li class="d-block float-end me-2"><a class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#profilePopuplg" aria-controls="profilePopuplg" role="button" data-toggle="dropdown" aria-expanded="false"></a></li>       
+              <li class="d-block float-end"><a class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#profilePopuplg" aria-controls="profilePopuplg" role="button" data-toggle="dropdown" aria-expanded="false"></a></li>       
               <li class="d-block float-end me-2"> <p class="text-capitalize fw-bold" style="color: #ffffff;">Hello {{user.username}}!</p></li>
-              <li class="d-block float-end me-4"> <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i> </a> </li>
+              <li class="d-block float-end me-3"> <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i> </a> </li>
                   
             </ul>
             </div>
 
             
-            <div style="min-height: 120px;" class="d-lg-block d-none float-end">
+            <div class="d-lg-block d-none float-end">
                 <div class="collapse collapse-horizontal" id="profilePopuplg">
-                  <div class="card card-body" style="width: 300px;">
+                  <div class="card card-body" style="width: 200px;">
                     <a class="nav-link text-uppercase" href="#">My profile</a>
-                    <a class="nav-link text-uppercase" href="#">Logout</a>
+                    <a class="nav-link text-uppercase" href="/logout">Logout</a>
                   </div>
                 </div>
               </div>
@@ -100,8 +100,8 @@
                 <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="{% url "home" %}">PHOENIX ORGANICS</a>
 
                 <div class = "d-lg-none">
-                    <a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000; cursor: pointer;"></i> </a> </div>
-                                   
+                    <a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000; cursor: pointer;"></i> </a> 
+                </div>                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
@@ -133,7 +133,7 @@
                         <li class="d-block float-end py-1"><a class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#profilePopup" aria-controls="profilePopup" role="button" data-toggle="dropdown" aria-expanded="false"></a></li> 
                         <li class="d-block float-end py-1 me-2"><p class="text-uppercase fw-bold" style="color:#000000;">Hello {{user.username}}!</p> </li>     
                         <li class="d-block float-end me-4"><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> </li>
-                        <li class="d-block float-end me-4 py-1"><a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000; cursor: pointer;"></i> </a></li>
+                        <li class="d-block float-end py-1 me-4"><a href="/cart"><i class="fa-solid fa-cart-shopping fa-lg" style="color: #000000; cursor: pointer;"></i> </a></li>
                         
                     </ul>
                     
@@ -149,11 +149,11 @@
                   
                 </div>
 
-                <div class = "d-lg-none" style="min-height: 120px;">
+                <div class = "d-lg-none">
                     <div class="collapse collapse-horizontal" id="profilePopup">
-                      <div class="card card-body" style="width: 300px;">
+                      <div class="card card-body" style="width: 200px;">
                         <a class="nav-link text-uppercase" href="#">My profile</a>
-                        <a class="nav-link text-uppercase" href="#">Logout</a>
+                        <a class="nav-link text-uppercase" href="/logout">Logout</a>
                       </div>
                     </div>
                   </div> 

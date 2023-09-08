@@ -62,7 +62,7 @@ class Order (models.Model): ##This basically represents the CART
     
 class OrderItem (models.Model): #This items represents items within the cart
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
 
 
     quantity = models.IntegerField(default=0, null=True, blank=True) #number of products bought per order
