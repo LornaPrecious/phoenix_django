@@ -11,6 +11,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from phoenixsite import settings
 from django.utils.encoding import force_bytes, force_str, force_text
 from .tokens import generate_token
+
 # Create your views here.
 
 def register (request):
