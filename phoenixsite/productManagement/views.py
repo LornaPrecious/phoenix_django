@@ -3,6 +3,7 @@ from .models import *
 from django.http import JsonResponse
 import json
 import datetime
+from .utils import cookieCart, cartData, guestOrder
 
 def products(request):
    return render(request, "productManagement/products.html")
@@ -20,40 +21,32 @@ def dresses(request):
    context = {'products': products}
    return render(request, "productManagement/dresses.html", context)
 
-
+#******************************************************************************************************************************
 def cart(request):
-   if request.user.is_authenticated:
-      customer = request.user.customer
-      order, created = Order.objects.get_or_create(customer=customer, complete=False) #creating/quering an object
-     
-      items = order.orderitem_set.all()
-      cartItems = order.get_cart_items
-   else: #if user isn't authenticated/hasn't logged in
-      items = []
-      order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
-      cartItems = order['get_cart_items']
+   data = cartData(request)
+   cartItems = data['cartItems']
+   order = data['order']
+   items = data['items']
 
    context ={'order': order, 'items': items, 'cartItems': cartItems}
    return render(request, "productManagement/cart.html", context) 
 
+#*********************************************************************************************************************
 def checkout(request):
-   if request.user.is_authenticated:
-      customer = request.user.customer
-      order, created = Order.objects.get_or_create(customer=customer, complete=False) #creating/quering an object
-   
-      items = order.orderitem_set.all()
-      cartItems = order.get_cart_items
-   else: #if user isn't authenticated/hasn't logged in
-      items = []
-      order = {'get_cart_total': 0, 'get_cart_items':0, 'get_full_total': 0, 'shipping': False}
-      cartItems = order['get_cart_items']
+   data = cartData(request)
+   cartItems = data['cartItems']
+   order = data['order']
+   items = data['items']
+
 
    context = {'items': items, 'order': order, 'cartItems': cartItems}
    return render(request, "productManagement/checkout.html", context) 
 
 
+#*********************************************************************************************************************
 def updateItem(request):
    data = json.loads(request.body)
+
    productId = data['productId']
    action = data['action']
 
@@ -79,35 +72,40 @@ def updateItem(request):
 
    return JsonResponse('Product added successfully', safe=False)
 
+#****************************************************************************
+
 def processOrder(request):
    data = json.loads(request.body)
+#  transaction_id = datetime.datetime.now().timestamp()
 
    if request.user.is_authenticated:
       customer = request.user.customer
-      order, created = Order.objects.get_or_create(customer=customer, complete=False)
-      
-      total = float(data['form']['total'])
-    
-
-      if total == float(order.get_cart_total):
-         order.complete = True
-         order.save()
-      
-      else:
-         order.complete = False
-
-      if order.shipping == True:
-         if request.method == "POST":
-            address = request.Post['address']
-            address2 = request.Post['address2']
-            country = request.Post['country']
-            city = request.POST['city']
-            zipcode = request.POST['zipcode']
-
-            shipping = ShippingAddress(address=address, address2=address2, country=country, city=city, zipcode=zipcode)
-            shipping.save()
-         
+      order, created = Order.objects.get_or_create(customer=customer, complete=False) 
+   
    else:
-      print('User is not logged in')
+       customer, order = guestOrder(request, data)
+
+
+   total = float(data['form']['total'])
+
+   if total == float(order.get_cart_total):
+      order.complete = True
+      order.save()
+   else:
+      order.complete = False
+   
+         
+#REVIEW THE CODE BELOW IF STATEMENT
+      
+   if order.shipping == True:
+      if request.method == "POST":
+         address = request.Post['address']
+         address2 = request.Post['address2']
+         country = request.Post['country']
+         city = request.POST['city']
+         zipcode = request.POST['zipcode']
+
+         shipping = ShippingAddress(address=address, address2=address2, country=country, city=city, zipcode=zipcode)
+         shipping.save()
 
    return JsonResponse('Payment complete', safe=False)

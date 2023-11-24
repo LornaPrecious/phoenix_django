@@ -4,20 +4,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ContactUs
 from . models import Customer
 from productManagement.models import Complaints, Order
+from productManagement.utils import cartData
 
 def index(request):
-    if request.user.is_authenticated:
-      customer = request.user.customer
-      order, created = Order.objects.get_or_create(customer=customer, complete=False)
-      items = order.orderitem_set.all()
-      cartItems = order.get_cart_items
+    data = cartData(request)
+    cartItems = data['cartItems']
+  
 
-    else: #if user isn't authenticated/hasn't logged in
-      items = []
-      order = {'get_cart_total': 0, 'get_cart_items':0}
-      cartItems = order['get_cart_items']
-
-    context ={'items': items, 'order': order, 'cartItems': cartItems}
+    context ={'cartItems': cartItems}
     return render(request, "main/base.html", context)
 
 def home(request):
