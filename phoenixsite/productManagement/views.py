@@ -83,17 +83,15 @@ def processOrder(request):
       order, created = Order.objects.get_or_create(customer=customer, complete=False) 
    
    else:
-       customer, order = guestOrder(request, data)
-
+      customer, order = guestOrder(request, data)
+      
+      
 
    total = float(data['form']['total'])
+   total == float(order.get_cart_total)
+   order.complete = True
+   order.save()
 
-   if total == float(order.get_cart_total):
-      order.complete = True
-      order.save()
-   else:
-      order.complete = False
-   
          
 #REVIEW THE CODE BELOW IF STATEMENT
       
@@ -105,7 +103,7 @@ def processOrder(request):
          city = request.POST['city']
          zipcode = request.POST['zipcode']
 
-         shipping = ShippingAddress(address=address, address2=address2, country=country, city=city, zipcode=zipcode)
+         shipping = ShippingAddress(customer=customer, order= order, address=address, address2=address2, country=country, city=city, zipcode=zipcode)
          shipping.save()
 
    return JsonResponse('Payment complete', safe=False)

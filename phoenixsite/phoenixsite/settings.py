@@ -25,7 +25,7 @@ EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 EMAIL_PORT = EMAIL_PORT
 DEFAULT_FROM_EMAIL=DEFAULT_FROM_EMAIL
 
-#NOT SURE IT WORKS IN RODUCTION
+#NOT SURE IT WORKS IN PRODUCTION
 import django
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str

@@ -10,6 +10,7 @@ GENDER_CHOICES = [
 
 class Customer (models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    
     customer_id = models.IntegerField(primary_key= True,)
     first_name = models.CharField(max_length= 100, null=True, blank=True)
     last_name = models.CharField(max_length= 100, null=True, blank=True)
