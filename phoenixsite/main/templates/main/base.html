@@ -81,12 +81,7 @@
             <div class = "px-5 pt-4 text-end d-none d-lg-block">    
                 <a class="btn btn-primary me-4" href="{% url "register" %}">Sign up</a> 
                 <a class="btn btn-primary me-4" href="{% url "login" %}">Login</a> 
-                
-                <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i> </a>
-                <i class="fa-sharp fa-solid fa-circle fa-lg" style="color: #ec3232;"></i> 
-                <p style="color: #ffffff;"> {{cartItems.quantity}} </p>
-             
-                
+                             
             </div>
 
             {% else %}
@@ -95,7 +90,7 @@
               <li class="d-block float-end"><a class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#profilePopuplg" aria-controls="profilePopuplg" role="button" data-toggle="dropdown" aria-expanded="false"></a></li>       
               <li class="d-block float-end me-2"> <p class="text-capitalize fw-bold" style="color: #ffffff;">Hello {{user.username}}!</p></li>
               <li class="d-block float-end me-3"> <a href="/cart"> <i class="fas fa-cart-shopping fa-lg" style="color: #ffffff; cursor: pointer;"></i>
-                <i class="fa-sharp fa-solid fa-circle fa-lg" style="color: #ec3232;"></i>
+                <i class="fa-sharp fa-solid fa-circle fa-lg" style="color: #ffffff;"></i>
             </a> </li>
                   
             </ul>
@@ -142,7 +137,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "products" %}">Products</a></li>                                                
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "store" %}">Store</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{% url "contactus" %}">Contact Us</a></li>
-                        <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff;"></i>
+                        <!-- <i class="fa-solid fa-magnifying-glass fa-2xl" style="color: #ffffff;"></i> -->
                     </ul>
                    
                     <div class = "d-lg-none">

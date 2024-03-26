@@ -61,16 +61,17 @@
 
                                         <div class="col-md-4">
                                             <label for="city" class="form-label">County</label>
-                                            <select id="city" class="form-select" id="city" name="city" autocomplete="off">
-                                                <option selected>Nairobi</option>
-                                                <option>Kiambu</option>
-                                                <option>Nakuru</option>
-                                                <option>Naivasha</option>
-                                                <option>Meru</option>
-                                                <option>Embu</option>
-                                                <option>Kirinyaga</option>
-                                                <option>Mombasa</option>
+                                            <select id="city" class="form-select" value="city"  id="city" name="city" autocomplete="off">
+                                                <option  id="Nairobi" name="Nairobi" selected>Nairobi</option>
+                                                <option id="Kiambu" name="Kiambu">Kiambu</option>
+                                                <option id="Nakuru" name="Nakuru">Nakuru</option>
+                                                <option id="Naivasha" name="Naivasha">Naivasha</option>
+                                                <option id="Meru" name="Meru">Meru</option>
+                                                <option id="Embu" name="Embu">Embu</option>
+                                                <option id="Kirinyaga" name="Kirinyaga">Kirinyaga</option>
+                                                <option id="Mombasa" name="Mombasa">Mombasa</option>
                                             </select>
+                                            
                                             </div>
 
                                         <div class="col-md-2">
@@ -123,7 +124,7 @@
                                 
                                     <img class="img-fluid rounded list-inline-item w-25 pb-2 pe-4" src="{{item.product.product_imagesURL}}">
                                 
-                                    <p class="list-inline-item pe-2">name too long</p>
+                                    <p class="list-inline-item pe-2">{{item.product.product_name}}</p>
                                     <p class="list-inline-item pe-2">{{item.product.product_price|floatformat:2}}</p>
                                     <p class="list-inline-item">x{{item.quantity}}</p>
                                 </div>
@@ -136,19 +137,19 @@
                                     <span class="ms-auto">{{order.get_cart_total|floatformat:2}}</span>
                                 </li>
 
-                                <li class="list-unstyled-item d-flex mb-3">
+                                <!-- <li class="list-unstyled-item d-flex mb-3">
                                     Delivery (Standard - 2 working days): <br> <a href = "#">Change delivery method-this is a link to profile page </a>
                                     <span class="ms-auto">{delivery cost}</span>
-                                </li>
+                                </li> -->
 
-                                <li class="list-unstyled-item d-flex mb-3 fw-bold">
+                                <!-- <li class="list-unstyled-item d-flex mb-3 fw-bold">
                                     Promo code:
                                     <span class="ms-auto">{gyyfghfg}</span>
-                                </li>
+                                </li> -->
 
                                 <li class="list-unstyled-item d-flex mb-3 fw-bold">
-                                    TOTAL (subtotal + delivery + promo):
-                                    <span class="ms-auto"> {full total} </span> 
+                                    TOTAL:
+                                    <span class="ms-auto"> {{order.get_full_total|floatformat:2}} </span> 
                                 </li>
                             
                             </ul>

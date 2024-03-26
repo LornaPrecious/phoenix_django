@@ -63,53 +63,53 @@ def cartData(request):
     return {'cartItems': cartItems, 'order': order, 'items': items}
 
 
-def guestOrder(request, data):
+# def guestOrder(request, data):
 
-    print('User is not logged in')
-    print('COOKIES:', request.COOKIES)
+#     print('User is not logged in')
+#     print('COOKIES:', request.COOKIES)
     
-    first_name = data['form']['fname']
-    last_name = data['form']['lname']
-    email = data['form']['email']
-    phone_number = data['form']['phonenumber']
+#     first_name = data['form']['fname']
+#     last_name = data['form']['lname']
+#     email = data['form']['email']
+#     phone_number = data['form']['phonenumber']
 
 
-    customer, created = Customer.objects.get_or_create(
-    email=email, defaults={
-        'first_name': first_name,
-        'last_name': last_name,
-        'phone_number': phone_number,
-        }
-    )
+#     customer, created = Customer.objects.get_or_create(
+#     email=email, defaults={
+#         'first_name': first_name,
+#         'last_name': last_name,
+#         'phone_number': phone_number,
+#         }
+#     )
 
-#Created is bool, True if instance is created, False if fetched 
-# Update the customer details if the customer already exists
-    if not created:
-        customer.first_name = first_name
-        customer.last_name = last_name
-        customer.phone_number = phone_number
-        customer.save()
+# #Created is bool, True if instance is created, False if fetched 
+# # Update the customer details if the customer already exists
+#     if not created:
+#         customer.first_name = first_name
+#         customer.last_name = last_name
+#         customer.phone_number = phone_number
+#         customer.save()
     
-#Creating a 'guest' customer order
+# #Creating a 'guest' customer order
 
-    order = Order.objects.get_or_create(customer=customer, complete = False)
-    total = float(data['form']['total'])
-    total == float(order.get_cart_total)
-    order.complete = True
-    order.save()
+#     order = Order.objects.get_or_create(customer=customer, complete = False)
+#     total = float(data['form']['total'])
+#     total == float(order.get_cart_total)
+#     order.complete = True
+#     order.save()
 
-    cookieData = cookieCart(request)
-    items = cookieData['items']
+#     cookieData = cookieCart(request)
+#     items = cookieData['items']
          
 
-    for item in items:
-        product = Product.objects.get(product_id = item['product']['product_id'])
+#     for item in items:
+#         product = Product.objects.get(product_id = item['product']['product_id'])
       
-        try:
-            orderItem = OrderItem.objects.get(product=product, order=order)
-            orderItem.quantity = item['quantity']
-            orderItem.save()
-        except OrderItem.DoesNotExist:
-            orderItem = OrderItem.objects.create(product=product, order=order, quantity=item['quantity'])
+#         try:
+#             orderItem = OrderItem.objects.get(product=product, order=order)
+#             orderItem.quantity = item['quantity']
+#             orderItem.save()
+#         except OrderItem.DoesNotExist:
+#             orderItem = OrderItem.objects.create(product=product, order=order, quantity=item['quantity'])
 
-    return (customer, order)
+#     return (customer, order)

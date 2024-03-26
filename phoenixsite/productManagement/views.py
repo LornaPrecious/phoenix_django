@@ -3,7 +3,7 @@ from .models import *
 from django.http import JsonResponse
 import json
 import datetime
-from .utils import cookieCart, cartData, guestOrder
+from .utils import cartData
 
 def products(request):
    return render(request, "productManagement/products.html")
@@ -37,6 +37,12 @@ def checkout(request):
    cartItems = data['cartItems']
    order = data['order']
    items = data['items']
+
+
+   if cartItems == 0:
+        # Render a template indicating that the cart is empty
+      return render(request, "productManagement/products.html")
+
 
 
    context = {'items': items, 'order': order, 'cartItems': cartItems}
@@ -83,7 +89,8 @@ def processOrder(request):
       order, created = Order.objects.get_or_create(customer=customer, complete=False) 
    
    else:
-      customer, order = guestOrder(request, data)
+      pass
+     # customer, order = guestOrder(request, data)
       
       
 

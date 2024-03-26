@@ -1,6 +1,7 @@
 from time import timezone
 from django.db import models
 from main.models import Customer
+from decimal import Decimal
 
 class Product(models.Model): 
     product_id = models.IntegerField(primary_key=True)
@@ -32,7 +33,7 @@ class Order (models.Model): ##This basically represents the CART
     order_id = models.AutoField(primary_key=True, unique=True, auto_created=True)
     order_date = models.DateField(auto_now=True) 
     complete = models.BooleanField(default=False) #if complete is false can continue adding items, changes status of cart is it same as order status??
-    cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # total quantity * product_price - discount 
+    #cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True) # total quantity * product_price - discount 
     def __str__(self):
         return str(self.order_id)
     
@@ -59,6 +60,18 @@ class Order (models.Model): ##This basically represents the CART
     class Meta:
         db_table='order'
 
+
+    @property
+    def get_full_total(self):
+        if (self.get_cart_total >=  Decimal('10499')):
+            full_total = (self.get_cart_total - (self.get_cart_total * Decimal('0.15'))) 
+
+        elif(self.get_cart_total >= Decimal('2499') and self.get_cart_total <= Decimal('10498')):
+            full_total =(self.get_cart_total - (self.get_cart_total * Decimal('0.10')))
+        else:
+            full_total = self.get_cart_total 
+        return full_total
+
     
 class OrderItem (models.Model): #This items represents items within the cart
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True) #one to many relationship, 1 customer, can have multiple orders
@@ -80,7 +93,6 @@ class OrderItem (models.Model): #This items represents items within the cart
 
     
 class ShippingAddress(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True, blank=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
 
     shipping_code = models.IntegerField(primary_key=True)
@@ -89,63 +101,49 @@ class ShippingAddress(models.Model):
     country =models.CharField(max_length=250, null=True, blank=True)
     city = models.CharField(max_length=200)
     zipcode = models.CharField(max_length=200)
-    delivery_cost = models.DecimalField(max_digits=10, decimal_places=2) #depending with location, product_weight, any discounts
     shipping_date = models.DateTimeField(auto_now_add=True) 
     def __str__(self):
         return self.shipping_code
     class Meta:
         db_table='shippingAddress'
 
-#    @property
-#     def get_full_total(self):
-#         if (self.order.get_cart_total >= 5499):
-#             full_total = (self.order.get_cart_total - (self.order.get_cart_total * 0.13)) + self.delivery_cost
-
-#         elif(self.order.get_cart_total >= 2499 and self.order.get_cart_total <= 5498):
-#             full_total =(self.order.get_cart_total - (self.order.get_cart_total * 0.10)) + self.delivery_cost
-#         else:
-#             full_total = self.order.get_cart_total + self.delivery_cost 
-#         return full_total
-
          
-class PaymentInfo(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)#reference to cutomerID
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)#orderID for product being paid
+# class PaymentInfo(models.Model):
+#     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)#reference to cutomerID
+#     order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)#orderID for product being paid
  
-    payment_code = models.CharField(max_length= 20, primary_key=True)
-    payment_type = models.CharField(max_length= 250, help_text="Mpesa(Kenyan phone numbers only)")
-    payment_phone = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
-    amount = models.DecimalField(max_digits=10, decimal_places=2) #amount being paid
-    payment_status = models.CharField(max_length= 250)
-    def __str__(self):
-        return self.payment_code
-    class Meta:
-        db_table='payment_information'
+#     payment_code = models.CharField(max_length= 20, primary_key=True)
+#     payment_type = models.CharField(max_length= 250, help_text="Mpesa(Kenyan phone numbers only)")
+#     payment_phone = models.IntegerField(help_text='0712345678 or +254712345678') #look for a validator, ie. regex 
+#     amount = models.DecimalField(max_digits=10, decimal_places=2) #amount being paid
+#     payment_status = models.CharField(max_length= 250)
+#     def __str__(self):
+#         return self.payment_code
+#     class Meta:
+#         db_table='payment_information'
+        
 
-class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
-    product = models.ForeignKey(Product, models.SET_NULL, blank=True, null = True)
-    shippingAddress = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
+# class Offer(models.Model): #can I apply these discounts to the other tables and automatically?
+#     product = models.ForeignKey(Product, models.SET_NULL, blank=True, null = True)
+#     shippingAddress = models.ForeignKey(ShippingAddress, models.SET_NULL, blank=True, null = True)
 
-    coupon_code = models.CharField(max_length = 20, primary_key=True)
-    offer_discount = models.DecimalField(max_digits=10, decimal_places=2) #Must be in percentages
-    description = models.CharField(max_length=1000)
-    def __str__(self):
-        return self.coupon_code
-    class Meta:
-        db_table='offer'
+#     coupon_code = models.CharField(max_length = 20, primary_key=True)
+#     offer_discount = models.DecimalField(max_digits=10, decimal_places=2) #Must be in percentages
+    
+#     def __str__(self):
+#         return self.coupon_code
+#     class Meta:
+#         db_table='offer'
 
 
 class Complaints(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null = True)
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null = True)#orderID for product being paid
-    
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null = True)
 
-    complaint_code = models.CharField(max_length=20)
+    complaint_code = models.CharField(max_length=20, auto_created=True)
     first_name = models.CharField(max_length= 100, null=True, blank=True)
     last_name = models.CharField(max_length= 100, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     phone_number = models.IntegerField(null=True, blank=True) #look for a validator, ie. regex 
-    gender = models.CharField(max_length=20, null=True, blank=True)
     issue = models.CharField(max_length=300, null=True, blank=True)
     other = models.TextField(null=True, blank=True)
     def __str__(self):
